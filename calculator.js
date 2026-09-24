@@ -7,31 +7,35 @@
     // Helper: get element by ID
     function $(id) { return document.getElementById(id); }
 
-    // Helper: update cut list items with computed values
+    // Helper: update cut list items with named placeholder values
+    // Each value object has keys that match [key] placeholders in both cut list AND step text
     function updateCutList(id, values) {
         const list = $(id);
         if (!list) return;
         const items = list.querySelectorAll('li');
         for (const li of items) {
-            const idx = Array.from(items).indexOf(li);
-            if (values[idx] !== undefined) {
-                li.textContent = li.textContent.replace(/\[.*?\]/, values[idx]);
+            for (const [key, val] of Object.entries(values)) {
+                li.textContent = li.textContent.replace(new RegExp(`\\[${key}\\]`, 'g'), String(val));
             }
-        };
-        // Update step text placeholders
-        updateStepText(id.replace('-cutlist', ''), values);
+        }
+        // Update step text placeholders using the same card and values
+        const cardId = id.replace('-cutlist', '');
+        const card = $(cardId);
+        updateStepText(card, values);
     }
 
     // Helper: replace [placeholder] text in step descriptions
-    function updateStepText(projectId, values) {
-        const card = $(projectId);
+    function updateStepText(card, values) {
         if (!card) return;
         const steps = card.querySelectorAll('.steps-list li');
         for (const li of steps) {
+            // Replace [key] placeholders in textContent (preserves <strong> tags)
+            const original = li.textContent;
+            let newText = original;
             for (const [key, val] of Object.entries(values)) {
-                const html = li.innerHTML;
-                li.textContent = html.replace(`[${key}]`, val);
+                newText = newText.replace(new RegExp(`\\[${key}\\]`, 'g'), String(val));
             }
+            li.textContent = newText;
         }
     }
 
@@ -48,10 +52,11 @@
         $('cb-wid-val').textContent = wid;
         $('cb-strips-val').textContent = strips;
 
-        updateCutList('cb-cutlist', [
-            `${maple} × 3⅝" × [${len}]`,
-            `${walnut} × 3⅝" × [${len}]`
-        ]);
+        updateCutList('cb-cutlist', {
+            maple: `${maple}`, walnut: `${walnut}`,
+            strips: `${strips}`, len: `${len}`,
+            dims: `${wid}" × ${len}"`
+        });
     }
 
     // ===== Floating Shelves Calculator =====
@@ -63,11 +68,10 @@
         $('fs-len-val').textContent = len;
         $('fs-dep-val').textContent = dep;
 
-        updateCutList('fs-cutlist', [
-            `1 × 1×10 × [${len - 2}]"`,
-            `2 × 1×4 × [${bracketDepth + 2}]"`,
-            `2 × M6×40mm L-brackets`
-        ]);
+        updateCutList('fs-cutlist', {
+            face: `${len - 2}`,
+            arms: `${bracketDepth + 2}`
+        });
     }
 
     // ===== Planter Box Calculator =====
@@ -81,11 +85,11 @@
         $('pb-wid-val').textContent = wid;
         $('pb-hei-val').textContent = hei;
 
-        updateCutList('pb-cutlist', [
-            `2 × 1×6 × [${len - 2}]"`,
-            `2 × 1×6 × [${sideLen}]"`,
-            `1 × plywood [${len - 2}" × ${sideLen}"]`
-        ]);
+        updateCutList('pb-cutlist', {
+            frontBack: `${len - 2}`,
+            sides: `${wid - 7}`,
+            dims: `${len - 2}" × ${wid - 7}"`
+        });
     }
 
     // ===== Side Table Calculator =====
@@ -99,12 +103,12 @@
         $('st-dep-val').textContent = dep;
         $('st-hei-val').textContent = height;
 
-        updateCutList('st-cutlist', [
-            `4 × 1×4 × [${legLen}]"`,
-            `2 × 1×4 × [${railLen}]"`,
-            `2 × 1×4 × [${shortRailLen}]"`,
-            `1 × 1×10 × [${wid}" × ${dep}"]`
-        ]);
+        updateCutList('st-cutlist', {
+            legs: `${height - 2}`,
+            sideRails: `${wid - 7}`,
+            shortRails: `${dep - 7}`,
+            dims: `${wid}" × ${dep}"`
+        });
     }
 
     // ===== Sawhorses Calculator (Ana White Heavy Duty) =====
@@ -123,13 +127,13 @@
         const topLen = Math.round((height / 30) * 32 * 10) / 10; // ~32" scaled
         const beamLen = topWid + 0.625; // ~33⅝" scaled
 
-        updateCutList('sh-cutlist', [
-            `4 × 2×4 @ [${leg1Len.toFixed(1)}]"`,
-            `4 × 2×4 @ [${leg2Len.toFixed(1)}]"`,
-            `8 × 2×4 @ [${sideLen.toFixed(1)}]"`,
-            `6 × 2×4 @ [${topLen.toFixed(1)}]"`,
-            `4 × 1×3 @ [${beamLen.toFixed(1)}]"`
-        ]);
+        updateCutList('sh-cutlist', {
+            leg1: leg1Len.toFixed(1),
+            leg2: leg2Len.toFixed(1),
+            sides: sideLen.toFixed(1),
+            tops: topLen.toFixed(1),
+            beams: beamLen.toFixed(1)
+        });
     }
 
     // ===== Garage Shelving Calculator (Ana White Ultimate) =====
@@ -150,13 +154,13 @@
         const rungs = rungsPerLadder * 4;
 
 
-        updateCutList('gs-cutlist', [
-            `4 × 2×4 × [${hei}]"`,
-            `${rungs} × 2×4 × [21]"`,
-            `4 × 2×4 × [${len}]"`,
-            `${shelves} × ¾" plywood × [${dep}" × ${len}"]`,
-            `1 × ¾" plywood × [${dep}" × ${len}"]`
-        ]);
+        updateCutList('gs-cutlist', {
+            posts: hei,
+            rungs: `${rungs}`,
+            rails: len,
+            shelves: `${shelves}`,
+            shelfDims: `${dep}" × ${len}"`
+        });
     }
 
     // ===== Fold-Down Workbench Calculator (Ana White Folding) =====
@@ -169,13 +173,13 @@
         $('fb-dep-val').textContent = dep;
         $('fb-len-val').textContent = len;
 
-        updateCutList('fb-cutlist', [
-            `1 × ¾" plywood × [${dep}" × ${len}"]`,
-            `2 × 2×4 × [${len}]"`,
-            `2 × 2×4 × [${dep}]"`,
-            `4 × 2×4 × [${dep}]"`,
-            `2 × 2×4 × [${dep - 2}]"`
-        ]);
+        updateCutList('fb-cutlist', {
+            surface: `${dep}" × ${len}"`,
+            legs: len,
+            mounts: dep,
+            storageSides: dep,
+            storageBottoms: dep - 2
+        });
     }
 
     // ===== Pegboard Wall Calculator =====
@@ -186,14 +190,11 @@
         $('pw-wid-val').textContent = wid;
         $('pw-hei-val').textContent = hei;
 
-        // Frame: top/bottom = width, sides = height - 8" (subtract two 1×4 thicknesses)
-        const sideLen = hei - 8;
-
-        updateCutList('pw-cutlist', [
-            `1 × ¼" pegboard × [${wid}" × ${hei}"]`,
-            `2 × 1×4 × [${wid}]"`,
-            `2 × 1×4 × [${sideLen}]"`
-        ]);
+        updateCutList('pw-cutlist', {
+            board: `${wid}" × ${hei}"`,
+            topBottom: wid,
+            sides: hei - 8
+        });
     }
 
     // ===== Corner Cabinet Calculator =====
@@ -206,13 +207,13 @@
 
         const doorLen = (hei / 2) - 2; // each door covers half
 
-        updateCutList('cc-cutlist', [
-            `2 × ¾" plywood × [${sid}" × [${hei}]]"`,
-            `1 × ¾" plywood × [${sid}" × [${hei}]]"`,
-            `1 × ¾" plywood × [${sid}" × 24"]`,
-            `2 × ¾" plywood × [${sid}" × [${doorLen}]]"`,
-            `1 × ¾" plywood × [${sid}" × 24"]`
-        ]);
+        updateCutList('cc-cutlist', {
+            sides: `${sid}" × ${hei}"`,
+            back: `${sid}" × ${hei}"`,
+            top: `${sid}" × 24"`,
+            doors: `${sid}" × ${doorLen}"`,
+            shelf: `${sid}" × 24"`
+        });
     }
 
     // ===== Bike Rack Calculator =====
@@ -225,11 +226,13 @@
 
 
 
-        updateCutList('br-cutlist', [
-            `1 × 2×4 × [${len}]"`,
-            `${supportBlocks} × 2×4 × [8]"`,
-            `${numHooks * 2} × 2×4 × [4]"`
-        ]);
+        const numHooks = Math.floor(len / 12);
+        const supportBlocks = numHooks * 2;
+        updateCutList('br-cutlist', {
+            rail: len,
+            blocks: `${supportBlocks}`,
+            hooks: `${numHooks * 2}`
+        });
     }
 
     // ===== Wire up all calculators =====
