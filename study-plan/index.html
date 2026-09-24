@@ -222,6 +222,72 @@
     padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; color: var(--orange); margin-left: 8px;
   }
 
+  .debrief-view { display: none; }
+  .debrief-view.active { display: block; }
+  .debrief-course {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .debrief-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    cursor: pointer;
+    border-bottom: 1px solid var(--border);
+  }
+  .debrief-header:hover { background: var(--surface2); }
+  .debrief-header h3 { font-size: 1.1rem; }
+  .debrief-grade {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: var(--surface2);
+  }
+  .debrief-body { padding: 20px; display: none; }
+  .debrief-course.open .debrief-body { display: block; }
+  .debrief-section { margin-bottom: 18px; }
+  .debrief-section h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin-bottom: 8px; }
+  .debrief-upcoming-item {
+    padding: 8px 12px;
+    background: var(--surface2);
+    border-radius: 6px;
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+  }
+  .debrief-upcoming-item .date { color: var(--accent); font-weight: 600; font-size: 0.8rem; }
+  .debrief-struggle {
+    padding: 10px 14px;
+    background: var(--surface2);
+    border-left: 3px solid var(--orange);
+    border-radius: 0 6px 6px 0;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+  }
+  .debrief-suggestion {
+    padding: 10px 14px;
+    background: rgba(52,211,153,0.08);
+    border-left: 3px solid var(--green);
+    border-radius: 0 6px 6px 0;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+  }
+  .debrief-topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .topic-tag {
+    padding: 4px 10px;
+    background: var(--surface2);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+  }
   .reset-btn {
     position: fixed; bottom: 20px; right: 20px;
     background: var(--surface); border: 1px solid var(--border);
@@ -249,6 +315,7 @@
     <button class="active" onclick="showView('dashboard')">Dashboard</button>
     <button onclick="showView('day')">Day by Day</button>
     <button onclick="showView('weekly')">Weekly</button>
+    <button onclick="showView('debrief')">Debrief</button>
   </div>
 
   <div id="dashboard" class="dashboard active">
@@ -289,6 +356,12 @@
     <h2 style="margin-bottom:20px">Week Overview: Sep 25 – Oct 4</h2>
     <div id="weeklyTable"></div>
   </div>
+
+  <div id="debriefView" class="debrief-view">
+    <h2 style="margin-bottom:8px">📋 Weekly Debrief</h2>
+    <p style="color:var(--text-dim);margin-bottom:24px">What's coming up, where things stand, and what to focus on.</p>
+    <div id="debriefContent"></div>
+  </div>
 </div>
 
 <button class="reset-btn" onclick="resetProgress()">Reset All Progress</button>
@@ -306,6 +379,7 @@ function showView(view) {
   document.getElementById('dashboard').classList.remove('active');
   document.getElementById('dayView').classList.remove('active');
   document.getElementById('weeklyView').classList.remove('active');
+  document.getElementById('debriefView').classList.remove('active');
   if (view === 'dashboard') {
     document.querySelectorAll('.nav button')[0].classList.add('active');
     document.getElementById('dashboard').classList.add('active');
@@ -318,6 +392,10 @@ function showView(view) {
     document.querySelectorAll('.nav button')[2].classList.add('active');
     document.getElementById('weeklyView').classList.add('active');
     renderWeekly();
+  } else if (view === 'debrief') {
+    document.querySelectorAll('.nav button')[3].classList.add('active');
+    document.getElementById('debriefView').classList.add('active');
+    renderDebrief();
   }
 }
 
@@ -519,6 +597,209 @@ function renderWeekly() {
   });
   table.appendChild(tbody);
   tableContainer.appendChild(table);
+}
+
+function renderDebrief() {
+  const debriefData = {
+    'English 1': {
+      upcoming: [
+        { title: 'IXL: Use in-text citations (ZP8)', date: 'Sep 25' }
+      ],
+      grade_note: '34 past-due assignments — only 3 submitted late. Submission rate: 9%',
+      struggles: [
+        { title: 'The Giver reading assignments (31 missing)', detail: 'Ch 1-17 readings and analysis papers not turned in' },
+        { title: 'IXL grammar skills', detail: 'Sentence structure, commas, colons — only 3 of 17 completed' },
+        { title: 'Early semester work', detail: 'Syllabus form, writer-reader relationship, three bears analysis all missing' }
+      ],
+      suggestions: [
+        'The Giver reading has the biggest gap. Prioritize reading 1-2 chapters per session and flag quotations as you go.',
+        'Do writing assignments (essay, analysis) in short daily sessions instead of all at once.',
+        'Check Canvas daily — 31 items never submitted. Start with the most recent ones (Ch 18-23 reading).',
+        'IXL skills build on each other. Start with Sentence Structure (WVS), then move to punctuation skills.'
+      ],
+      topics: ['The Giver reading/analysis', 'grammar/IXL skills', 'writing/analysis']
+    },
+    'Math 2': {
+      upcoming: [
+        { title: 'Quadratic Word Problems and Review', date: 'Sep 25' },
+        { title: 'Quarter 1 Warm-Ups', date: 'Oct 7' }
+      ],
+      grade_note: '28 past-due assignments — 0 submitted. Submission rate: 0%',
+      struggles: [
+        { title: 'Unit 8 quizzes (8-1 through 8-4)', detail: 'All lesson quizzes and MathXL practice missing — translations, rotations, reflections, angle pairs' },
+        { title: 'Unit 9 quizzes (9-2 through 9-5)', detail: 'Lesson quizzes and MathXL practice missing — perpendicular bisectors, congruence theorems, vertex form' },
+        { title: 'Triangle theorems', detail: 'Sum theorem, exterior angle theorem, triangle congruence missing' }
+      ],
+      suggestions: [
+        'Quizzes are sequential — you need the early ones for later topics. Start with 8-1 and work forward.',
+        'MathXL practice problems are key for understanding. Don\'t skip them — they\'re practice for the quizzes.',
+        'Quadratic functions (9-2 to 9-5) build on the transformation work from Unit 8. Review transformations first.',
+        'Make a formula sheet: vertex form, standard form, axis of symmetry, discriminant.'
+      ],
+      topics: ['quadratic functions', 'triangle congruence', 'unit 8 topics', 'unit 9 topics']
+    },
+    'PLTW': {
+      upcoming: [
+        { title: 'Unit 2 Build A Band choices', date: 'Sep 27' },
+        { title: 'Unit 2 turn in here', date: 'Sep 27' },
+        { title: 'Unit 3 projects (7+ items)', date: 'Oct 2' }
+      ],
+      grade_note: '11 past-due assignments — 0 submitted. Submission rate: 0%. 12 upcoming — heavy workload.',
+      struggles: [
+        { title: 'Unit 1 assignments', detail: 'Team-building, SchooLinks, Fizzy Pop, Animated Story, Navigation quiz all missing' },
+        { title: 'Unit 2 turn-in', detail: 'Build A Band choices and turn-in file not submitted' },
+        { title: 'Weekly project submissions', detail: '10 Blocks, Debug It! missing — need to submit completed projects' }
+      ],
+      suggestions: [
+        'Unit 3 has 7+ items due Oct 2 — this is your biggest deadline. Split across Mon-Wed study sessions.',
+        'Submit Unit 1 work as soon as possible — those are the easiest to catch up on.',
+        'Keep a running checklist of submitted projects. Each one needs to be uploaded individually.'
+      ],
+      topics: ['Scratch/programming']
+    },
+    'Social Studies': {
+      upcoming: [
+        { title: 'Q1 W7 AOW', date: 'Sep 27' }
+      ],
+      grade_note: '8 past-due assignments — 0 submitted. Submission rate: 0%. Q1 W2-W6 all missing.',
+      struggles: [
+        { title: 'Weekly AOW work (Q1 W2-W6)', detail: '5 weekly assignments not submitted — all Q1 material' },
+        { title: 'Map skills', detail: 'US/NC Map assignment not submitted' },
+        { title: 'Vocabulary', detail: 'Unit 2 Intro Vocab Notes and Application not submitted' }
+      ],
+      suggestions: [
+        'AOW assignments are weekly — make them a Friday ritual. Do them before the weekend.',
+        'Q1 is almost over with W7 due Sep 27. Focus on getting W7 in on time this week.',
+        'Vocabulary and map work is quick. Set a timer for 20 min and knock it out.',
+        'Review Q1 themes for the final — what were the major topics? Geography, regions, boundaries.'
+      ],
+      topics: ['map skills', 'vocabulary', 'weekly AOW work']
+    },
+    'Earth Science': {
+      upcoming: [
+        { title: 'Law of Conservation of Mass Practice', date: 'Oct 2' },
+        { title: 'Research Plan Submission', date: 'Oct 13' }
+      ],
+      grade_note: 'No past-due assignments. On track.',
+      struggles: [],
+      suggestions: [
+        'Law of Conservation of Mass Practice is due Oct 2 — schedule it this week.',
+        'Research Plan is due Oct 13 — you have time. Start brainstorming early.',
+        'Earth Science is the only course with no overdue work. Keep this momentum!'
+      ],
+      topics: ['conservation of mass', 'research']
+    },
+    'Business': {
+      upcoming: [],
+      grade_note: '10 past-due assignments — 5 submitted late. Submission rate: 50%.',
+      struggles: [
+        { title: 'Early assignments missing', detail: 'Vision Board, Graphic Organizer, Who Am I not submitted' },
+        { title: 'Mid-semester work', detail: 'EDpuzzle, Business Detective, Sole Pro Flyer overdue 24-35 days' }
+      ],
+      suggestions: [
+        '5 out of 10 items submitted late — good effort but late. Try to submit within 48 hours.',
+        'Submit the missing Vision Board and Graphic Organizer first — those are short.',
+        'Business class is mostly done. Focus on getting the last 5 items in.'
+      ],
+      topics: ['business fundamentals']
+    },
+    'Orchestra': {
+      upcoming: [],
+      grade_note: '1 past-due assignment — submitted late. On track otherwise.',
+      struggles: [
+        { title: 'Scale Recording', detail: '8va Major Scale and Arpeggio submitted 14 days late' }
+      ],
+      suggestions: [
+        'Only 1 item late — great! Practice scales regularly so recordings are ready.',
+        'Orchestra has minimal online work. Focus on in-class practice.'
+      ],
+      topics: ['scales/arpeggios']
+    }
+  };
+
+  const debriefEl = document.getElementById('debriefContent');
+  debriefEl.innerHTML = '';
+  Object.entries(debriefData).forEach(([courseName, data]) => {
+    const courseDiv = document.createElement('div');
+    courseDiv.className = 'debrief-course';
+
+    const header = document.createElement('div');
+    header.className = 'debrief-header';
+    const titleEl = document.createElement('h3');
+    titleEl.textContent = courseName;
+    const gradeEl = document.createElement('span');
+    gradeEl.className = 'debrief-grade';
+    gradeEl.textContent = data.grade_note;
+    header.appendChild(titleEl);
+    header.appendChild(gradeEl);
+    courseDiv.appendChild(header);
+
+    const body = document.createElement('div');
+    body.className = 'debrief-body';
+
+    // Upcoming section
+    if (data.upcoming.length > 0) {
+      const upSection = document.createElement('div');
+      upSection.className = 'debrief-section';
+      upSection.innerHTML = '<h4>📅 What\'s Coming Up This Week</h4>';
+      data.upcoming.forEach(u => {
+        const upEl = document.createElement('div');
+        upEl.className = 'debrief-upcoming-item';
+        upEl.innerHTML = '<div class="date">' + u.date + '</div><div>' + u.title + '</div>';
+        upSection.appendChild(upEl);
+      });
+      body.appendChild(upSection);
+    }
+
+    // Struggles section
+    if (data.struggles.length > 0) {
+      const struggleSection = document.createElement('div');
+      struggleSection.className = 'debrief-section';
+      struggleSection.innerHTML = '<h4>⚠️ Areas to Focus On</h4>';
+      data.struggles.forEach(s => {
+        const sEl = document.createElement('div');
+        sEl.className = 'debrief-struggle';
+        sEl.innerHTML = '<strong>' + s.title + '</strong><br>' + s.detail;
+        struggleSection.appendChild(sEl);
+      });
+      body.appendChild(struggleSection);
+    }
+
+    // Suggestions section
+    if (data.suggestions.length > 0) {
+      const sugSection = document.createElement('div');
+      sugSection.className = 'debrief-section';
+      sugSection.innerHTML = '<h4>💡 Study Suggestions</h4>';
+      data.suggestions.forEach(s => {
+        const sugEl = document.createElement('div');
+        sugEl.className = 'debrief-suggestion';
+        sugEl.textContent = s;
+        sugSection.appendChild(sugEl);
+      });
+      body.appendChild(sugSection);
+    }
+
+    // Topics section
+    if (data.topics.length > 0) {
+      const topicSection = document.createElement('div');
+      topicSection.className = 'debrief-section';
+      topicSection.innerHTML = '<h4>📖 Topics Covered</h4>';
+      const topicContainer = document.createElement('div');
+      topicContainer.className = 'debrief-topics';
+      data.topics.forEach(t => {
+        const tag = document.createElement('span');
+        tag.className = 'topic-tag';
+        tag.textContent = t;
+        topicContainer.appendChild(tag);
+      });
+      topicSection.appendChild(topicContainer);
+      body.appendChild(topicSection);
+    }
+
+    courseDiv.appendChild(body);
+    header.onclick = function() { courseDiv.classList.toggle('open'); };
+    debriefEl.appendChild(courseDiv);
+  });
 }
 
 function resetProgress() {
