@@ -9,7 +9,7 @@
 <body>
     <nav class="nav">
         <div class="nav-inner">
-            <a href="index.html" class="logo">Project Log</a>
+            <a href="#hero" class="logo">Project Log</a>
             <div class="nav-links">
                 <a href="#projects" class="nav-link">Projects</a>
                 <a href="#planned" class="nav-link">Woodworking</a>
@@ -19,7 +19,7 @@
     </nav>
 
     <main class="container">
-        <section class="hero">
+        <section id="hero" class="hero">
             <h1>What I Build</h1>
             <p>A record of projects in progress and planned. Starting with woodworking — the craft that turns raw material into things you can hold.</p>
         </section>
@@ -39,125 +39,525 @@
         <section id="planned" class="section">
             <div class="section-header">
                 <h2>Planned Projects</h2>
-                <p class="section-subtitle">Top 5 beginner-to-intermediate woodworking projects, ranked by community recommendation across Reddit, YouTube, instructional sites, and woodworking books</p>
-            </div>
-
-            <div class="woodworking-research">
-                <p class="research-note">
-                    <strong>Methodology:</strong> Evaluated across 15+ Reddit threads (r/woodworking, r/beginnerwoodworking),
-                    major YouTube woodworking channels, Ana White's plans, Family Handyman, and
-                    books including <em>Complete Guide to Woodworking</em> (Chris Tribe),
-                    <em>The Practical Woodworker</em> (Stephen Corbett), and <em>The Handbuilt Home</em> (Ana White).
-                    Ranked by frequency of recommendation, skill value, practical utility, and beginner accessibility.
-                </p>
+                <p class="section-subtitle">Top 5 beginner to intermediate woodworking projects</p>
             </div>
 
             <div class="project-grid">
-                <!-- Project 1 -->
-                <article class="project-card">
+                <!-- Project 1: Cutting Board -->
+                <article class="project-card" id="cb">
                     <div class="rank">#1</div>
                     <h3>Cutting Board</h3>
                     <div class="project-meta">
                         <span class="tag tag-beginner">Beginner</span>
                     </div>
+                    <div class="project-image">
+                        <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Background -->
+                            <rect width="400" height="280" fill="#f5f0e8" rx="4"/>
+                            <!-- Shadow -->
+                            <ellipse cx="200" cy="245" rx="160" ry="18" fill="#00000012"/>
+                            <!-- Cutting board body -->
+                            <rect x="70" y="90" width="260" height="130" rx="12" fill="#d4a76a" stroke="#b8904f" stroke-width="1.5"/>
+                            <!-- Edge grain strips -->
+                            <rect x="70" y="90" width="52" height="130" fill="#c49458" rx="4"/>
+                            <rect x="122" y="90" width="52" height="130" fill="#d4a76a"/>
+                            <rect x="174" y="90" width="52" height="130" fill="#b8894a" rx="4"/>
+                            <rect x="226" y="90" width="52" height="130" fill="#c49458"/>
+                            <rect x="278" y="90" width="52" height="130" fill="#d4a76a" rx="4"/>
+                            <!-- Juice groove -->
+                            <rect x="80" y="140" width="240" height="3" fill="#a07840" rx="1.5"/>
+                            <!-- Handle hole -->
+                            <circle cx="310" cy="155" r="10" fill="#f5f0e8"/>
+                            <circle cx="310" cy="155" r="10" fill="none" stroke="#b8904f" stroke-width="1"/>
+                            <!-- Wood grain texture lines -->
+                            <line x1="95" y1="100" x2="95" y2="210" stroke="#c4945840" stroke-width="0.5"/>
+                            <line x1="148" y1="100" x2="148" y2="210" stroke="#d4a76a40" stroke-width="0.5"/>
+                            <line x1="200" y1="100" x2="200" y2="210" stroke="#b8894a40" stroke-width="0.5"/>
+                            <line x1="252" y1="100" x2="252" y2="210" stroke="#c4945840" stroke-width="0.5"/>
+                            <line x1="305" y1="100" x2="305" y2="210" stroke="#d4a76a40" stroke-width="0.5"/>
+                            <!-- Small decorative elements -->
+                            <circle cx="140" cy="200" r="2" fill="#a0784040"/>
+                            <circle cx="145" cy="202" r="1.5" fill="#a0784030"/>
+                            <circle cx="200" cy="198" r="2" fill="#a0784040"/>
+                        </svg>
+                    </div>
                     <p class="project-desc">
-                        The most consistently recommended first project across every source. Teaches measuring, cross-cutting,
-                        edge-gluing, squaring, and food-safe finishing — the foundational skills everything else builds on.
+                        The foundational woodworking project. Edge-grain construction teaches panel gluing,
+                        squaring, and food-safe finishing. Make one for yourself, gift one to someone you love.
                     </p>
-                    <ul class="skills-list">
-                        <li>Cross-cutting & rip cuts</li>
-                        <li>Edge-gluing panels</li>
-                        <li>Squaring a panel</li>
-                        <li>Food-safe finishing</li>
-                    </ul>
+
+                    <div class="plan-section">
+                        <h4>Build Plan</h4>
+                        <div class="plan-grid">
+                            <div>
+                                <h5>Cut List</h5>
+                                <ul class="cut-list">
+                                    <li>4× &quot;× 3⅝&quot; × 18&quot; — Maple (5 strips)</li>
+                                    <li>4× &quot;× 3⅝&quot; × 18&quot; — Walnut (4 strips, alternating)</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5>Materials</h5>
+                                <ul class="cut-list">
+                                    <li>Wood glue (1 bottle)</li>
+                                    <li>Clamps (4+ bar clamps or pipe clamps)</li>
+                                    <li>Food-safe mineral oil (16 oz)</li>
+                                    <li>220-grit sandpaper</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="plan-section">
+                        <h4>Steps</h4>
+                        <ol class="steps-list">
+                            <li>
+                                <strong>Cut strips to width.</strong> Rip maple and walnut boards to 3⅝&quot; wide on the table saw.
+                                You need 9 strips total — 5 maple, 4 walnut.
+                            </li>
+                            <li>
+                                <strong>Arrange in pattern.</strong> Lay strips face-up, alternating maple and walnut.
+                                Flip every other strip end-for-end to hide end-grain pattern. Add a scrap spacer on each end.
+                            </li>
+                            <li>
+                                <strong>Glue the panel.</strong> Apply thin glue to each joint, clamp with spreaders.
+                                Wipe squeeze-out with a damp cloth. Let dry 24 hours.
+                            </li>
+                            <li>
+                                <strong>Cut to final size.</strong> Trim to 12&quot; × 18&quot;. Check square with diagonal measurement.
+                                Both diagonals must match — if they don't, it's out of square.
+                            </li>
+                            <li>
+                                <strong>Sand the surface.</strong> Progress through 120 → 180 → 220 grit.
+                                Sand with the grain. The board should feel like glass at 220.
+                            </li>
+                            <li>
+                                <strong>Round the edges.</strong> Use a ⅛&quot; round-over bit on the router table
+                                or sand edges by hand. This prevents splinters and gives a finished look.
+                            </li>
+                            <li>
+                                <strong>Apply finish.</strong> Coat generously with food-safe mineral oil.
+                                Let soak 30 minutes, wipe excess. Repeat 3 times over 3 days. This is what makes it food-safe.
+                            </li>
+                        </ol>
+                    </div>
+
                     <div class="tools-needed">
-                        <strong>Tools:</strong> Table saw (or miter saw), clamps, sandpaper
+                        <strong>Tools:</strong> Table saw, clamps, router (optional), sandpaper, mineral oil
                     </div>
                 </article>
 
-                <!-- Project 2 -->
-                <article class="project-card">
+                <!-- Project 2: Floating Shelves -->
+                <article class="project-card" id="shelves">
                     <div class="rank">#2</div>
                     <h3>Floating Shelves</h3>
                     <div class="project-meta">
                         <span class="tag tag-beginner">Beginner</span>
                     </div>
+                    <div class="project-image">
+                        <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Background -->
+                            <rect width="400" height="280" fill="#f5f0e8" rx="4"/>
+                            <!-- Wall -->
+                            <rect x="0" y="0" width="400" height="280" fill="#e8e0d4" rx="4"/>
+                            <!-- Wall texture -->
+                            <line x1="50" y1="0" x2="50" y2="280" stroke="#e0d8cc" stroke-width="0.5"/>
+                            <line x1="150" y1="0" x2="150" y2="280" stroke="#e0d8cc" stroke-width="0.5"/>
+                            <line x1="250" y1="0" x2="250" y2="280" stroke="#e0d8cc" stroke-width="0.5"/>
+                            <line x1="350" y1="0" x2="350" y2="280" stroke="#e0d8cc" stroke-width="0.5"/>
+                            <!-- Shadow from shelf -->
+                            <rect x="72" y="138" width="256" height="4" fill="#00000015" rx="2"/>
+                            <!-- Shelf board -->
+                            <rect x="72" y="100" width="256" height="38" rx="3" fill="#8b6914" stroke="#6b4f10" stroke-width="1"/>
+                            <!-- Shelf top surface (lighter) -->
+                            <rect x="72" y="100" width="256" height="8" rx="3" fill="#a07d1e" opacity="0.8"/>
+                            <!-- Wood grain on shelf -->
+                            <line x1="100" y1="115" x2="300" y2="115" stroke="#7a5e12" stroke-width="0.5" opacity="0.5"/>
+                            <line x1="80" y1="125" x2="320" y2="125" stroke="#7a5e12" stroke-width="0.5" opacity="0.5"/>
+                            <line x1="90" y1="130" x2="310" y2="130" stroke="#7a5e12" stroke-width="0.5" opacity="0.5"/>
+                            <!-- Hidden bracket (small vertical piece) -->
+                            <rect x="100" y="100" width="12" height="38" fill="#6b4f10" rx="1"/>
+                            <rect x="288" y="100" width="12" height="38" fill="#6b4f10" rx="1"/>
+                            <!-- Items on shelf -->
+                            <rect x="120" y="65" width="40" height="35" rx="2" fill="#5a7a3a" opacity="0.7"/>
+                            <rect x="125" y="55" width="30" height="12" rx="1" fill="#4a6a2a" opacity="0.8"/>
+                            <!-- Small plant pot -->
+                            <rect x="115" y="72" width="50" height="28" rx="3" fill="#c49458"/>
+                            <!-- Books -->
+                            <rect x="200" y="72" width="18" height="28" rx="1" fill="#8b4513" opacity="0.7"/>
+                            <rect x="220" y="75" width="16" height="25" rx="1" fill="#5c4033" opacity="0.7"/>
+                            <rect x="238" y="70" width="15" height="30" rx="1" fill="#a0522d" opacity="0.7"/>
+                        </svg>
+                    </div>
                     <p class="project-desc">
-                        Ana White's most popular plans. Minimal materials, high visual impact, and teaches precision
-                        cutting, sanding, and wall-mount hardware. Multiple sizes = multiple builds with different challenges.
+                        Minimal materials, maximum visual impact. A hidden-bracket shelf teaches precision cutting
+                        and wall-mount hardware. Build one to start — then make a set of three for a gallery wall.
                     </p>
-                    <ul class="skills-list">
-                        <li>Precision cutting</li>
-                        <li>Hidden hardware mounting</li>
-                        <li>Edge finishing</li>
-                        <li>Level installation</li>
-                    </ul>
+
+                    <div class="plan-section">
+                        <h4>Build Plan</h4>
+                        <div class="plan-grid">
+                            <div>
+                                <h5>Cut List</h5>
+                                <ul class="cut-list">
+                                    <li>1× 1×10 × 36&quot; — Pine, Oak, or Poplar</li>
+                                    <li>1× 1×10 × 34&quot; — Same species (shelf face)</li>
+                                    <li>2× 1×4 × 8&quot; — L-bracket arms</li>
+                                    <li>2× M6×40mm L-brackets (2-pack)</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5>Materials</h5>
+                                <ul class="cut-list">
+                                    <li>Wood glue</li>
+                                    <li>1¼&quot; wood screws (6)</li>
+                                    <li>Wall anchors (2, if studs don't align)</li>
+                                    <li>Spray stain or polyurethane</li>
+                                    <li>220-grit sandpaper</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="plan-section">
+                        <h4>Steps</h4>
+                        <ol class="steps-list">
+                            <li>
+                                <strong>Cut the shelf face.</strong> Rip the 1×10 to 8⅞&quot; wide. This fits inside a standard
+                                L-bracket (which has an 8&quot; width) with a tiny gap for expansion.
+                            </li>
+                            <li>
+                                <strong>Cut the L-bracket arms.</strong> Cut two 1×4 pieces to 10&quot; long.
+                                These slide behind the shelf face to create the "floating" illusion.
+                            </li>
+                            <li>
+                                <strong>Glue and clamp the shelf face to the brackets.</strong>
+                                Center the bracket arms on the back edge of the shelf face. Apply glue, clamp, let dry 2 hours.
+                            </li>
+                            <li>
+                                <strong>Sand and finish.</strong> Sand all surfaces to 220 grit. Apply stain or clear coat.
+                                This is the step where the shelf starts looking like furniture.
+                            </li>
+                            <li>
+                                <strong>Find wall studs.</strong> Use a stud finder. Mark center of each stud.
+                                If your bracket holes don't align with studs, use wall anchors rated for 50+ lbs each.
+                            </li>
+                            <li>
+                                <strong>Mount brackets to wall.</strong> Hold shelf against wall at desired height.
+                                Mark screw holes through bracket. Pre-drill, then drive screws. Use a level — this is critical.
+                            </li>
+                        </ol>
+                    </div>
+
                     <div class="tools-needed">
-                        <strong>Tools:</strong> Miter saw or table saw, drill, level, clamps
+                        <strong>Tools:</strong> Table saw or circular saw, drill, level, clamps, stud finder
                     </div>
                 </article>
 
-                <!-- Project 3 -->
-                <article class="project-card">
+                <!-- Project 3: Planter Box -->
+                <article class="project-card" id="planter">
                     <div class="rank">#3</div>
-                    <h3>Planters / Plant Boxes</h3>
+                    <h3>Planter Box</h3>
                     <div class="project-meta">
                         <span class="tag tag-beginner">Beginner</span>
                     </div>
+                    <div class="project-image">
+                        <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Background -->
+                            <rect width="400" height="280" fill="#f5f0e8" rx="4"/>
+                            <!-- Ground / surface -->
+                            <rect x="0" y="240" width="400" height="40" fill="#8b7355" rx="4"/>
+                            <rect x="0" y="235" width="400" height="10" fill="#7a6345" rx="4"/>
+                            <!-- Shadow -->
+                            <ellipse cx="200" cy="238" rx="130" ry="8" fill="#00000015"/>
+                            <!-- Planter back wall -->
+                            <rect x="120" y="110" width="160" height="125" fill="#8b6914" stroke="#6b4f10" stroke-width="1.5" rx="2"/>
+                            <!-- Planter front wall -->
+                            <rect x="120" y="110" width="160" height="125" fill="none" stroke="#6b4f10" stroke-width="1.5" rx="2"/>
+                            <rect x="120" y="110" width="160" height="5" fill="#6b4f10" rx="2"/>
+                            <!-- Planter left wall (perspective) -->
+                            <polygon points="120,110 100,120 100,235 120,235" fill="#a07d1e" stroke="#6b4f10" stroke-width="1"/>
+                            <!-- Planter right wall (perspective) -->
+                            <polygon points="280,110 300,120 300,235 280,235" fill="#a07d1e" stroke="#6b4f10" stroke-width="1"/>
+                            <!-- Soil -->
+                            <rect x="125" y="170" width="150" height="58" fill="#3d2b1f" rx="2"/>
+                            <rect x="125" y="170" width="150" height="3" fill="#4d3b2f"/>
+                            <!-- Plants - green foliage -->
+                            <ellipse cx="155" cy="145" rx="25" ry="20" fill="#4a7a2a" opacity="0.85"/>
+                            <ellipse cx="195" cy="130" rx="30" ry="25" fill="#3a6a1a" opacity="0.9"/>
+                            <ellipse cx="240" cy="145" rx="22" ry="18" fill="#5a8a3a" opacity="0.85"/>
+                            <ellipse cx="175" cy="138" rx="18" ry="15" fill="#6a9a4a" opacity="0.7"/>
+                            <ellipse cx="220" cy="140" rx="20" ry="16" fill="#4a7a2a" opacity="0.75"/>
+                            <!-- Small flowers -->
+                            <circle cx="165" cy="128" r="4" fill="#e8a87c"/>
+                            <circle cx="210" cy="122" r="3" fill="#e8a87c"/>
+                            <circle cx="230" cy="138" r="3.5" fill="#d48a6a"/>
+                        </svg>
+                    </div>
                     <p class="project-desc">
-                        Top 3 most recommended project across Reddit and instructional sites. Teaches basic box construction,
-                        assembly at angles, and outdoor material selection. Low stakes — mistakes are forgiving.
+                        The forgiving first build. A simple box teaches assembly, angles, and material selection.
+                        Mistakes are hidden by plants. Build a set — one for herbs, one for flowers, one for each room.
                     </p>
-                    <ul class="skills-list">
-                        <li>Box construction</li>
-                        <li>45° or butt joints</li>
-                        <li>Outdoor material selection</li>
-                        <li>Drainage planning</li>
-                    </ul>
+
+                    <div class="plan-section">
+                        <h4>Build Plan</h4>
+                        <div class="plan-grid">
+                            <div>
+                                <h5>Cut List</h5>
+                                <ul class="cut-list">
+                                    <li>2× 1×6 × 14&quot; — Front &amp; Back panels</li>
+                                    <li>2× 1×6 × 12&quot; — Side panels</li>
+                                    <li>1× 1×6 × 14&quot; — Bottom panel (cut from scrap)</li>
+                                    <li>2× 1×4 × 14&quot; — Drainage rim (optional)</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5>Materials</h5>
+                                <ul class="cut-list">
+                                    <li>Exterior wood glue</li>
+                                    <li>2&quot; exterior screws (12)</li>
+                                    <li>Landscaping fabric (1 ft²)</li>
+                                    <li>Drill bit ¼&quot; (for drainage holes)</li>
+                                    <li>Container soil + mulch</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="plan-section">
+                        <h4>Steps</h4>
+                        <ol class="steps-list">
+                            <li>
+                                <strong>Cut all panels.</strong> Front/back at 14&quot;, sides at 12&quot;. The sides are shorter
+                                because they fit inside the front and back — that's how the box gets its depth.
+                            </li>
+                            <li>
+                                <strong>Drill drainage holes.</strong> Drill four ¼&quot; holes in the bottom panel,
+                                spaced evenly. This is non-negotiable — plants rot without drainage.
+                            </li>
+                            <li>
+                                <strong>Assemble the box.</strong> Apply glue to each joint. Drive screws through the front
+                                panel into the sides. Repeat for back panel. Use clamps to keep everything square.
+                            </li>
+                            <li>
+                                <strong>Nail on the bottom.</strong> Slide the bottom panel into place under the side panels.
+                                Screw up through the bottom into the sides. This creates a solid base.
+                            </li>
+                            <li>
+                                <strong>Line with fabric.</strong> Cut landscaping fabric to fit inside the bottom.
+                                Staple it in place. This holds soil in while letting water drain.
+                            </li>
+                            <li>
+                                <strong>Fill and plant.</strong> Add soil, plant your herbs or flowers, and enjoy.
+                                Cedar or redwood last longest outdoors — pine works for a season or two.
+                            </li>
+                        </ol>
+                    </div>
+
                     <div class="tools-needed">
-                        <strong>Tools:</strong> Miter saw or table saw, drill, screws, sandpaper
+                        <strong>Tools:</strong> Miter saw or table saw, drill, 2&quot; screws, clamps, staple gun (optional)
                     </div>
                 </article>
 
-                <!-- Project 4 -->
-                <article class="project-card">
+                <!-- Project 4: Side Table -->
+                <article class="project-card" id="sidetable">
                     <div class="rank">#4</div>
                     <h3>Side Table</h3>
                     <div class="project-meta">
                         <span class="tag tag-intermediate">Intermediate</span>
                     </div>
+                    <div class="project-image">
+                        <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Background -->
+                            <rect width="400" height="280" fill="#f5f0e8" rx="4"/>
+                            <!-- Floor -->
+                            <rect x="0" y="240" width="400" height="40" fill="#8b7355" rx="4"/>
+                            <rect x="0" y="237" width="400" height="5" fill="#7a6345"/>
+                            <!-- Shadow -->
+                            <ellipse cx="200" cy="240" rx="100" ry="6" fill="#00000012"/>
+                            <!-- Table legs (4) -->
+                            <rect x="120" y="130" width="12" height="110" fill="#5c3a1a" rx="1"/>
+                            <rect x="268" y="130" width="12" height="110" fill="#5c3a1a" rx="1"/>
+                            <rect x="155" y="130" width="12" height="110" fill="#4d3014" rx="1"/>
+                            <rect x="233" y="130" width="12" height="110" fill="#4d3014" rx="1"/>
+                            <!-- Cross supports -->
+                            <rect x="128" y="195" width="144" height="8" fill="#6b4a1e" rx="1"/>
+                            <!-- Table top -->
+                            <rect x="100" y="100" width="200" height="30" rx="4" fill="#8b6914" stroke="#6b4f10" stroke-width="1"/>
+                            <!-- Table top surface highlight -->
+                            <rect x="100" y="100" width="200" height="5" rx="4" fill="#a07d1e" opacity="0.6"/>
+                            <!-- Wood grain on top -->
+                            <line x1="120" y1="112" x2="280" y2="112" stroke="#7a5e12" stroke-width="0.5" opacity="0.4"/>
+                            <line x1="110" y1="118" x2="290" y2="118" stroke="#7a5e12" stroke-width="0.5" opacity="0.4"/>
+                            <line x1="115" y1="124" x2="285" y2="124" stroke="#7a5e12" stroke-width="0.5" opacity="0.4"/>
+                            <!-- Item on table -->
+                            <rect x="160" y="75" width="40" height="25" rx="2" fill="#e8a87c" opacity="0.6"/>
+                            <rect x="165" y="65" width="30" height="12" rx="1" fill="#d4956a" opacity="0.7"/>
+                        </svg>
+                    </div>
                     <p class="project-desc">
-                        The classic first furniture piece. Bridges the gap between small crafts and real furniture.
-                        Teaches joinery, leg attachment, and structural integrity — the skills that unlock cabinets and tables.
+                        The classic first furniture piece. Bridges small crafts and real furniture.
+                        Teaches leg joinery, square assembly, and finishing — skills that unlock every cabinet and table after.
                     </p>
-                    <ul class="skills-list">
-                        <li>Table leg joinery (pocket holes or mortise & tenon)</li>
-                        <li>Appliance top attachment</li>
-                        <li>Level & square assembly</li>
-                        <li>Finish staining / oiling</li>
-                    </ul>
+
+                    <div class="plan-section">
+                        <h4>Build Plan</h4>
+                        <div class="plan-grid">
+                            <div>
+                                <h5>Cut List</h5>
+                                <ul class="cut-list">
+                                    <li>4× 1×4 × 22&quot; — Legs</li>
+                                    <li>2× 1×4 × 14&quot; — Side rails (lower cross supports)</li>
+                                    <li>1× 1×10 × 24&quot; — Table top</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5>Materials</h5>
+                                <ul class="cut-list">
+                                    <li>Wood glue</li>
+                                    <li>1½&quot; pocket hole screws (16)</li>
+                                    <li>2&quot; wood screws (4)</li>
+                                    <li>Wood stain or polyurethane</li>
+                                    <li>120 → 220 grit sandpaper</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="plan-section">
+                        <h4>Steps</h4>
+                        <ol class="steps-list">
+                            <li>
+                                <strong>Drill pocket holes.</strong> On each end of the two side rails, drill 4 pocket holes —
+                                one near each end. This is where the rails attach to the legs.
+                            </li>
+                            <li>
+                                <strong>Build two leg assemblies.</strong> Attach each side rail between two legs using pocket holes.
+                                Glue + screws. Clamp square. Repeat for the other side. Each side is a "U" shape.
+                            </li>
+                            <li>
+                                <strong>Connect the sides.</strong> Attach the two leg assemblies together using the remaining
+                                1×4 as a front and back rail (same 14&quot; length). Pocket holes through legs into these rails.
+                            </li>
+                            <li>
+                                <strong>Flip and attach top.</strong> Flip the frame upside down. Center the table top on it.
+                                Screw down through the frame into the top from underneath. Use 2&quot; screws.
+                            </li>
+                            <li>
+                                <strong>Sand everything.</strong> Sand the top surface from 120 to 220 grit.
+                                Sand the frame edges to remove saw marks. A sander saves time; a sanding block gives control.
+                            </li>
+                            <li>
+                                <strong>Finish.</strong> Apply stain if desired. Let dry 4 hours. Apply polyurethane (2 coats,
+                                sanding between coats). This protects the top from water rings and heat marks.
+                            </li>
+                        </ol>
+                    </div>
+
                     <div class="tools-needed">
-                        <strong>Tools:</strong> Table saw, drill, pocket hole jig (optional), clamps, sander
+                        <strong>Tools:</strong> Table saw, drill, pocket hole jig, clamps, sander, polyurethane
                     </div>
                 </article>
 
-                <!-- Project 5 -->
-                <article class="project-card">
+                <!-- Project 5: Workbench / Sawhorses -->
+                <article class="project-card" id="sawhorse">
                     <div class="rank">#5</div>
-                    <h3>Workbench / Sawhorses</h3>
-                    <p>
-                        The meta-project: build the thing that helps you build everything else. Heavily recommended on Reddit
-                        as a true first project that immediately improves every subsequent build. Simple construction,
-                        massive practical value.
+                    <h3>Sawhorses</h3>
+                    <div class="project-meta">
+                        <span class="tag tag-beginner">Beginner</span>
+                    </div>
+                    <div class="project-image">
+                        <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Background -->
+                            <rect width="400" height="280" fill="#f5f0e8" rx="4"/>
+                            <!-- Floor -->
+                            <rect x="0" y="240" width="400" height="40" fill="#8b7355" rx="4"/>
+                            <!-- Left sawhorse -->
+                            <!-- A-frame left leg -->
+                            <rect x="70" y="140" width="14" height="100" fill="#8b6914" rx="1" transform="rotate(-8, 77, 240)"/>
+                            <!-- A-frame right leg -->
+                            <rect x="110" y="140" width="14" height="100" fill="#7a5e12" rx="1" transform="rotate(8, 117, 240)"/>
+                            <!-- Cross brace -->
+                            <rect x="78" y="200" width="44" height="8" fill="#6b4f10" rx="1" transform="rotate(-4, 100, 204)"/>
+                            <!-- Top beam -->
+                            <rect x="50" y="130" width="80" height="14" fill="#5c3a1a" rx="2"/>
+                            <rect x="50" y="130" width="80" height="3" fill="#6b4a1e" opacity="0.5"/>
+                            <!-- Right sawhorse (slightly behind) -->
+                            <!-- A-frame left leg -->
+                            <rect x="240" y="145" width="14" height="95" fill="#8b6914" rx="1" transform="rotate(-8, 247, 240)"/>
+                            <!-- A-frame right leg -->
+                            <rect x="280" y="145" width="14" height="95" fill="#7a5e12" rx="1" transform="rotate(8, 287, 240)"/>
+                            <!-- Cross brace -->
+                            <rect x="248" y="203" width="44" height="8" fill="#6b4f10" rx="1" transform="rotate(-4, 270, 207)"/>
+                            <!-- Top beam -->
+                            <rect x="220" y="135" width="80" height="14" fill="#5c3a1a" rx="2"/>
+                            <rect x="220" y="135" width="80" height="3" fill="#6b4a1e" opacity="0.5"/>
+                            <!-- Shadow -->
+                            <ellipse cx="100" cy="242" rx="45" ry="5" fill="#00000010"/>
+                            <ellipse cx="270" cy="242" rx="45" ry="5" fill="#00000010"/>
+                        </svg>
+                    </div>
+                    <p class="project-desc">
+                        Build the thing that lets you build everything else. Two sawhorses + a plywood top = a workbench
+                        that costs under $30. Simple construction, massive practical value. Built in an afternoon.
                     </p>
-                    <ul class="skills-list">
-                        <li>Long cross-cutting</li>
-                        <li>Structural assembly</li>
-                        <li>Weight & stability design</li>
-                        <li>Practical ergonomics</li>
-                    </ul>
+
+                    <div class="plan-section">
+                        <h4>Build Plan</h4>
+                        <div class="plan-grid">
+                            <div>
+                                <h5>Cut List (per sawhorse)</h5>
+                                <ul class="cut-list">
+                                    <li>2× 2×4 × 36&quot; — Legs (cut to angle)</li>
+                                    <li>1× 2×4 × 28&quot; — Top beam</li>
+                                    <li>1× 2×4 × 24&quot; — Cross brace</li>
+                                    <li>2× 2×4 × 28&quot; — Side blocks (for stability)</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5>Materials (×2 sawhorses)</h5>
+                                <ul class="cut-list">
+                                    <li>3× 2×4 × 8ft (one board = both sawhorses)</li>
+                                    <li>3&quot; structural screws (24)</li>
+                                    <li>Wood glue</li>
+                                    <li>Polyurethane (optional)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="plan-section">
+                        <h4>Steps</h4>
+                        <ol class="steps-list">
+                            <li>
+                                <strong>Set the leg angle.</strong> Lay a 2×4 flat. At each end, mark a line 1 inch from the
+                                edge at a 15° angle from perpendicular. Cut both legs to 36&quot; and cut the ends at 15°.
+                            </li>
+                            <li>
+                                <strong>Assemble the A-frame.</strong> Stand the two angled legs together at the top.
+                                The tops should be flush. Clamp them. Drive two screws through the top into both legs.
+                            </li>
+                            <li>
+                                <strong>Add the cross brace.</strong> Position the cross brace 8&quot; up from the bottom of
+                                the legs. Screw through both legs into the brace from the outside. This keeps the legs from spreading.
+                            </li>
+                            <li>
+                                <strong>Add side blocks.</strong> Cut two 2×4 blocks to fit between the legs near the top.
+                                Screw through each leg into the block. This adds side-to-side stability.
+                            </li>
+                            <li>
+                                <strong>Mount the top beam.</strong> Place the 28&quot; top beam across the legs at the top.
+                                Screw up through the legs into the beam. Repeat for second sawhorse.
+                            </li>
+                            <li>
+                                <strong>Finish.</strong> Sand rough spots. Apply a coat of polyurethane if these will live
+                                in a garage. Store flat when not in use.
+                            </li>
+                        </ol>
+                    </div>
+
                     <div class="tools-needed">
-                        <strong>Tools:</strong> Table saw or circular saw, drill, 4ft+ clamps, level
+                        <strong>Tools:</strong> Circular saw (or miter saw), drill, clamps, speed square
                     </div>
                 </article>
             </div>
@@ -167,133 +567,595 @@
         <section id="garage" class="section">
             <div class="section-header">
                 <h2>Garage Organization</h2>
-                <p class="section-subtitle">Top 5 woodworking projects for garage storage and organization, ranked by community recommendation across Reddit, Ana White, Kreg, Family Handyman, and YouTube</p>
-            </div>
-
-            <div class="woodworking-research">
-                <p class="research-note">
-                    <strong>Methodology:</strong> Evaluated across r/woodworking_DIY, r/BeginnerWoodWorking,
-                    Ana White's plans, Kreg Tool plans, Family Handyman, and major woodworking YouTube channels.
-                    Ranked by practical impact on garage organization, beginner accessibility, material cost efficiency,
-                    and community enthusiasm (Reddit upvotes, YouTube comments).
-                </p>
+                <p class="section-subtitle">Top 5 garage storage projects for re-arranging your garage</p>
             </div>
 
             <div class="project-grid">
-                <!-- Garage 1 -->
-                <article class="project-card">
+                <!-- Garage 1: Floor-to-Ceiling Shelving -->
+                <article class="project-card" id="garage-shelf">
                     <div class="rank">#1</div>
                     <h3>Floor-to-Ceiling Shelving Unit</h3>
                     <div class="project-meta">
                         <span class="tag tag-intermediate">Intermediate</span>
                     </div>
+                    <div class="project-image">
+                        <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Background -->
+                            <rect width="400" height="280" fill="#f5f0e8" rx="4"/>
+                            <!-- Wall -->
+                            <rect x="0" y="0" width="400" height="280" fill="#e8e0d4" rx="4"/>
+                            <!-- Wall texture -->
+                            <line x1="100" y1="0" x2="100" y2="280" stroke="#e0d8cc" stroke-width="0.5"/>
+                            <line x1="200" y1="0" x2="200" y2="280" stroke="#e0d8cc" stroke-width="0.5"/>
+                            <line x1="300" y1="0" x2="300" y2="280" stroke="#e0d8cc" stroke-width="0.5"/>
+                            <!-- Floor line -->
+                            <rect x="0" y="235" width="400" height="5" fill="#7a6345"/>
+                            <!-- Shelving unit frame (back) -->
+                            <rect x="50" y="20" width="300" height="215" fill="none" stroke="#5c3a1a" stroke-width="2"/>
+                            <!-- Side posts -->
+                            <rect x="50" y="20" width="16" height="215" fill="#6b4a1e"/>
+                            <rect x="334" y="20" width="16" height="215" fill="#6b4a1e"/>
+                            <!-- Shelf boards -->
+                            <rect x="66" y="60" width="268" height="6" fill="#8b6914" stroke="#6b4f10" stroke-width="0.5"/>
+                            <rect x="66" y="100" width="268" height="6" fill="#8b6914" stroke="#6b4f10" stroke-width="0.5"/>
+                            <rect x="66" y="140" width="268" height="6" fill="#8b6914" stroke="#6b4f10" stroke-width="0.5"/>
+                            <rect x="66" y="180" width="268" height="6" fill="#8b6914" stroke="#6b4f10" stroke-width="0.5"/>
+                            <!-- Items on shelves -->
+                            <!-- Top shelf items -->
+                            <rect x="80" y="35" width="40" height="25" rx="2" fill="#4a6a8a" opacity="0.5"/>
+                            <rect x="130" y="30" width="30" height="30" rx="2" fill="#8a6a4a" opacity="0.5"/>
+                            <rect x="170" y="38" width="25" height="22" rx="2" fill="#5a7a5a" opacity="0.5"/>
+                            <!-- Second shelf items -->
+                            <rect x="75" y="75" width="50" height="25" rx="2" fill="#7a5a3a" opacity="0.5"/>
+                            <rect x="140" y="70" width="45" height="30" rx="2" fill="#6a7a5a" opacity="0.5"/>
+                            <rect x="200" y="72" width="35" height="28" rx="2" fill="#8a6a6a" opacity="0.5"/>
+                            <!-- Third shelf items -->
+                            <rect x="90" y="115" width="45" height="25" rx="2" fill="#5a6a8a" opacity="0.5"/>
+                            <rect x="150" y="112" width="40" height="28" rx="2" fill="#7a6a4a" opacity="0.5"/>
+                            <rect x="210" y="118" width="30" height="22" rx="2" fill="#6a8a5a" opacity="0.5"/>
+                            <!-- Bottom shelf items -->
+                            <rect x="85" y="155" width="55" height="25" rx="2" fill="#8a7a5a" opacity="0.5"/>
+                            <rect x="155" y="150" width="40" height="30" rx="2" fill="#5a7a6a" opacity="0.5"/>
+                            <rect x="215" y="158" width="35" height="22" rx="2" fill="#7a5a7a" opacity="0.5"/>
+                        </svg>
+                    </div>
                     <p class="project-desc">
-                        The highest-impact single project for a garage. Ana White's "Ultimate Garage Shelving" and Kreg's
-                        "Garage Storage and Work Center" are the two most popular plans — both use simple plywood and
-                        2x4s, cost under $150, and deliver 30-40 feet of storage in a 6-8 foot footprint. Wall-mounted
-                        or floor-standing, it clears the floor for a car and everything else goes up.
+                        The single highest-impact project for a garage. Plywood and 2×4s, under $150,
+                        delivers 30-40 feet of storage in a 6-8 foot footprint. Everything goes up — the floor clears for the car.
                     </p>
-                    <ul class="skills-list">
-                        <li>Long rip cuts (plywood)</li>
-                        <li>Pocket-hole joinery</li>
-                        <li>Wall stud finding & mounting</li>
-                        <li>Load distribution design</li>
-                    </ul>
+
+                    <div class="plan-section">
+                        <h4>Build Plan</h4>
+                        <div class="plan-grid">
+                            <div>
+                                <h5>Cut List</h5>
+                                <ul class="cut-list">
+                                    <li>2× 2×4 × 84&quot; — Side posts (full height)</li>
+                                    <li>8× 2×4 × 72&quot; — Shelf boards (4 per side)</li>
+                                    <li>2× 2×4 × 76&quot; — Top rail + bottom rail</li>
+                                    <li>1× ¾&quot; plywood × 48&quot; × 96&quot; — Back panel</li>
+                                    <li>4× ¾&quot; plywood × 48&quot; × 24&quot; — Shelf surfaces</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5>Materials</h5>
+                                <ul class="cut-list">
+                                    <li>1¼&quot; pocket hole screws (80+)</li>
+                                    <li>3&quot; deck screws (16, for wall anchors)</li>
+                                    <li>Wood glue</li>
+                                    <li>Wall anchors or lag bolts (4)</li>
+                                    <li>Polyurethane (for garage conditions)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="plan-section">
+                        <h4>Steps</h4>
+                        <ol class="steps-list">
+                            <li>
+                                <strong>Cut side posts.</strong> Two 2×4s at 84&quot; tall (7 feet). This leaves room for
+                                a top rail and bottom rail while fitting under most garage ceilings.
+                            </li>
+                            <li>
+                                <strong>Build one side frame.</strong> Lay two posts parallel. Attach shelf boards between them
+                                at 20&quot; intervals (measure from bottom). Pocket holes from the outside of posts into each shelf board.
+                            </li>
+                            <li>
+                                <strong>Repeat for second side.</strong> Make an identical frame. Check both are the same height —
+                                measure diagonals. They must match for the unit to sit level.
+                            </li>
+                            <li>
+                                <strong>Connect sides with rails.</strong> Top rail and bottom rail go across both sides.
+                                Pocket holes through the posts into the rails. This turns two frames into one unit.
+                            </li>
+                            <li>
+                                <strong>Add plywood shelf surfaces.</strong> Cut four 24&quot; wide plywood panels. Screw through
+                                each shelf board (from above) into the plywood. Space them to match your shelf boards.
+                            </li>
+                            <li>
+                                <strong>Add back panel.</strong> Screw ¾&quot; plywood to the back of the unit.
+                                This prevents racking (side-to-side wobble). Drive screws every 12&quot;.
+                            </li>
+                            <li>
+                                <strong>Move into place and anchor.</strong> Slide the unit against the wall.
+                                Anchor into wall studs with 3&quot; deck screws through the back posts. Shim if the floor is uneven.
+                            </li>
+                        </ol>
+                    </div>
+
                     <div class="tools-needed">
-                        <strong>Tools:</strong> Table saw or circular saw, drill, pocket hole jig, level, 4ft+ clamps
+                        <strong>Tools:</strong> Table saw or circular saw, drill, pocket hole jig, level, 4ft+ clamps, stud finder
                     </div>
                 </article>
 
-                <!-- Garage 2 -->
-                <article class="project-card">
+                <!-- Garage 2: Fold-Down Workbench -->
+                <article class="project-card" id="foldbench">
                     <div class="rank">#2</div>
-                    <h3>Fold-Down Workbench / Wall Bench</h3>
+                    <h3>Fold-Down Workbench</h3>
                     <div class="project-meta">
                         <span class="tag tag-beginner">Beginner</span>
                     </div>
+                    <div class="project-image">
+                        <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Background -->
+                            <rect width="400" height="280" fill="#f5f0e8" rx="4"/>
+                            <!-- Wall -->
+                            <rect x="0" y="0" width="400" height="280" fill="#e8e0d4" rx="4"/>
+                            <!-- Wall texture -->
+                            <line x1="50" y1="0" x2="50" y2="280" stroke="#e0d8cc" stroke-width="0.5"/>
+                            <line x1="150" y1="0" x2="150" y2="280" stroke="#e0d8cc" stroke-width="0.5"/>
+                            <line x1="250" y1="0" x2="250" y2="280" stroke="#e0d8cc" stroke-width="0.5"/>
+                            <line x1="350" y1="0" x2="350" y2="280" stroke="#e0d8cc" stroke-width="0.5"/>
+                            <!-- Floor -->
+                            <rect x="0" y="240" width="400" height="40" fill="#7a6345" rx="4"/>
+                            <!-- Wall-mounted board (folded up position) -->
+                            <rect x="40" y="60" width="120" height="160" fill="#6b4a1e" stroke="#5c3a1a" stroke-width="1.5" rx="2"/>
+                            <!-- Hinge markers -->
+                            <circle cx="100" cy="100" r="6" fill="#4a3a1a" stroke="#3a2a0a" stroke-width="1"/>
+                            <circle cx="100" cy="180" r="6" fill="#4a3a1a" stroke="#3a2a0a" stroke-width="1"/>
+                            <!-- Folded-down workbench surface -->
+                            <rect x="155" y="160" width="160" height="14" fill="#8b6914" stroke="#6b4f10" stroke-width="1" rx="1"/>
+                            <!-- Support arm -->
+                            <rect x="240" y="100" width="8" height="65" fill="#5c3a1a" rx="1" transform="rotate(-25, 244, 100)"/>
+                            <!-- Wood grain on bench surface -->
+                            <line x1="170" y1="165" x2="300" y2="165" stroke="#7a5e12" stroke-width="0.5" opacity="0.4"/>
+                            <line x1="170" y1="169" x2="300" y2="169" stroke="#7a5e12" stroke-width="0.5" opacity="0.4"/>
+                            <!-- Items on bench -->
+                            <rect x="180" y="140" width="35" height="20" rx="2" fill="#7a8a5a" opacity="0.5"/>
+                            <rect x="230" y="135" width="25" height="25" rx="2" fill="#8a7a5a" opacity="0.5"/>
+                            <!-- Shelf on wall above -->
+                            <rect x="200" y="30" width="100" height="6" fill="#8b6914" stroke="#6b4f10" stroke-width="0.5"/>
+                        </svg>
+                    </div>
                     <p class="project-desc">
-                        The #1 viral garage project on Reddit — multiple threads with dozens of builds and enthusiastic
-                        comments. A shelf that folds down into a workbench when you need it, folds flat when you don't.
-                        One user built theirs in a weekend and said it "saved my garage and my sanity." Uses simple
-                        hinges and 2x4s — no fancy hardware needed.
+                        A shelf that folds down into a workbench when you need it, folds flat when you don't.
+                        Reddit's #1 viral garage project. Simple hinges and 2×4s — built in a weekend, changes everything.
                     </p>
-                    <ul class="skills-list">
-                        <li>Hinge mounting & alignment</li>
-                        <li>Support brace design</li>
-                        <li>Surface finishing</li>
-                        <li>Space-saving design thinking</li>
-                    </ul>
+
+                    <div class="plan-section">
+                        <h4>Build Plan</h4>
+                        <div class="plan-grid">
+                            <div>
+                                <h5>Cut List</h5>
+                                <ul class="cut-list">
+                                    <li>1× ¾&quot; plywood × 24&quot; × 48&quot; — Workbench surface</li>
+                                    <li>2× 2×4 × 48&quot; — Side supports (when folded down)</li>
+                                    <li>2× 2×4 × 20&quot; — Mounting blocks (for wall studs)</li>
+                                    <li>1× ¾&quot; plywood × 24&quot; × 36&quot; — Wall storage panel (optional)</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5>Materials</h5>
+                                <ul class="cut-list">
+                                    <li>2× 270° continuous hinges (heavy duty)</li>
+                                    <li>3&quot; structural screws (16)</li>
+                                    <li>Wood glue</li>
+                                    <li>Support arm with gas strut (or chain + hook)</li>
+                                    <li>Wall anchors or lag bolts (4)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="plan-section">
+                        <h4>Steps</h4>
+                        <ol class="steps-list">
+                            <li>
+                                <strong>Cut the workbench surface.</strong> Rip plywood to 24&quot; wide. Length depends on your wall —
+                                48&quot; is a good starting point. Sand edges smooth.
+                            </li>
+                            <li>
+                                <strong>Attach hinges to the bench.</strong> Screw one side of each continuous hinge to the
+                                edge of the workbench. Position them 8&quot; from each end. These are the hinges that let it fold.
+                            </li>
+                            <li>
+                                <strong>Find and mark wall studs.</strong> Two studs spaced 16&quot; apart. The mounting blocks
+                                attach here. Mark stud centers with a pencil.
+                            </li>
+                            <li>
+                                <strong>Mount the blocks to the wall.</strong> Screw 2×4 blocks into the two studs.
+                                Position them at the height where the bench folds down to work level (about 36&quot; from floor).
+                            </li>
+                            <li>
+                                <strong>Attach hinges to wall blocks.</strong> Screw the other side of each hinge to the
+                                wall-mounted blocks. The bench should fold flat against the wall when done.
+                            </li>
+                            <li>
+                                <strong>Add a support arm.</strong> Install a gas strut, chain, or simple wooden prop that holds
+                                the bench at working angle. Without it, the bench will sag under load.
+                            </li>
+                            <li>
+                                <strong>Test the fold.</strong> Lift the bench — it should go down smoothly and lock at 90°.
+                                Fold up — it should lay flat. Adjust the support arm tension if needed.
+                            </li>
+                        </ol>
+                    </div>
+
                     <div class="tools-needed">
-                        <strong>Tools:</strong> Miter saw or table saw, drill, level, clamps
+                        <strong>Tools:</strong> Circular saw, drill, level, 4ft+ clamps, speed square
                     </div>
                 </article>
 
-                <!-- Garage 3 -->
-                <article class="project-card">
+                <!-- Garage 3: Pegboard Tool Wall -->
+                <article class="project-card" id="pegboard">
                     <div class="rank">#3</div>
                     <h3>Pegboard Tool Wall</h3>
                     <div class="project-meta">
                         <span class="tag tag-beginner">Beginner</span>
                     </div>
+                    <div class="project-image">
+                        <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Background -->
+                            <rect width="400" height="280" fill="#f5f0e8" rx="4"/>
+                            <!-- Wall -->
+                            <rect x="0" y="0" width="400" height="280" fill="#e8e0d4" rx="4"/>
+                            <!-- Pegboard frame -->
+                            <rect x="60" y="20" width="280" height="220" fill="#c49458" stroke="#8b6914" stroke-width="2" rx="2"/>
+                            <!-- Pegboard holes (grid pattern) -->
+                            <circle cx="90" cy="50" r="2.5" fill="#8b6914"/>
+                            <circle cx="120" cy="50" r="2.5" fill="#8b6914"/>
+                            <circle cx="150" cy="50" r="2.5" fill="#8b6914"/>
+                            <circle cx="180" cy="50" r="2.5" fill="#8b6914"/>
+                            <circle cx="210" cy="50" r="2.5" fill="#8b6914"/>
+                            <circle cx="240" cy="50" r="2.5" fill="#8b6914"/>
+                            <circle cx="270" cy="50" r="2.5" fill="#8b6914"/>
+                            <circle cx="300" cy="50" r="2.5" fill="#8b6914"/>
+                            <!-- Row 2 -->
+                            <circle cx="105" cy="70" r="2.5" fill="#8b6914"/>
+                            <circle cx="135" cy="70" r="2.5" fill="#8b6914"/>
+                            <circle cx="165" cy="70" r="2.5" fill="#8b6914"/>
+                            <circle cx="195" cy="70" r="2.5" fill="#8b6914"/>
+                            <circle cx="225" cy="70" r="2.5" fill="#8b6914"/>
+                            <circle cx="255" cy="70" r="2.5" fill="#8b6914"/>
+                            <circle cx="285" cy="70" r="2.5" fill="#8b6914"/>
+                            <!-- Row 3 -->
+                            <circle cx="90" cy="90" r="2.5" fill="#8b6914"/>
+                            <circle cx="120" cy="90" r="2.5" fill="#8b6914"/>
+                            <circle cx="150" cy="90" r="2.5" fill="#8b6914"/>
+                            <circle cx="180" cy="90" r="2.5" fill="#8b6914"/>
+                            <circle cx="210" cy="90" r="2.5" fill="#8b6914"/>
+                            <circle cx="240" cy="90" r="2.5" fill="#8b6914"/>
+                            <circle cx="270" cy="90" r="2.5" fill="#8b6914"/>
+                            <circle cx="300" cy="90" r="2.5" fill="#8b6914"/>
+                            <!-- Row 4 -->
+                            <circle cx="105" cy="110" r="2.5" fill="#8b6914"/>
+                            <circle cx="135" cy="110" r="2.5" fill="#8b6914"/>
+                            <circle cx="165" cy="110" r="2.5" fill="#8b6914"/>
+                            <circle cx="195" cy="110" r="2.5" fill="#8b6914"/>
+                            <circle cx="225" cy="110" r="2.5" fill="#8b6914"/>
+                            <circle cx="255" cy="110" r="2.5" fill="#8b6914"/>
+                            <circle cx="285" cy="110" r="2.5" fill="#8b6914"/>
+                            <!-- Row 5 -->
+                            <circle cx="90" cy="130" r="2.5" fill="#8b6914"/>
+                            <circle cx="120" cy="130" r="2.5" fill="#8b6914"/>
+                            <circle cx="150" cy="130" r="2.5" fill="#8b6914"/>
+                            <circle cx="180" cy="130" r="2.5" fill="#8b6914"/>
+                            <circle cx="210" cy="130" r="2.5" fill="#8b6914"/>
+                            <circle cx="240" cy="130" r="2.5" fill="#8b6914"/>
+                            <circle cx="270" cy="130" r="2.5" fill="#8b6914"/>
+                            <circle cx="300" cy="130" r="2.5" fill="#8b6914"/>
+                            <!-- Pegs with tools -->
+                            <rect x="148" y="88" width="4" height="14" fill="#666" rx="1"/>
+                            <!-- Wrench on peg -->
+                            <rect x="140" y="100" width="20" height="8" fill="#888" rx="1"/>
+                            <rect x="142" y="96" width="4" height="4" fill="#888" rx="1"/>
+                            <rect x="154" y="96" width="4" height="4" fill="#888" rx="1"/>
+                            <!-- Peg with hammer -->
+                            <rect x="248" y="128" width="4" height="14" fill="#666" rx="1"/>
+                            <rect x="244" y="140" width="12" height="30" fill="#8b6914" rx="1"/>
+                            <rect x="240" y="138" width="20" height="8" fill="#888" rx="1"/>
+                            <!-- Shelf on pegboard -->
+                            <rect x="80" y="160" width="100" height="5" fill="#8b6914" stroke="#6b4f10" stroke-width="0.5"/>
+                            <rect x="220" y="160" width="100" height="5" fill="#8b6914" stroke="#6b4f10" stroke-width="0.5"/>
+                        </svg>
+                    </div>
                     <p class="project-desc">
-                        Recommended by virtually every garage makeover video and post. A wooden-framed pegboard panel
-                        transforms a blank wall into an organized tool display. Jen Woodhouse, Jonny Builds, and others
-                        make this one of the easiest weekend projects with outsized impact on daily usability.
+                        One weekend. Transforms a blank wall into an organized tool display. The easiest project on this list
+                        with outsized impact on daily usability. Pegboard goes on, tools go where you need them.
                     </p>
-                    <ul class="skills-list">
-                        <li>Frame construction</li>
-                        <li>Pegboard mounting</li>
-                        <li>Layout & spacing</li>
-                        <li>Paint / stain finish</li>
-                    </ul>
+
+                    <div class="plan-section">
+                        <h4>Build Plan</h4>
+                        <div class="plan-grid">
+                            <div>
+                                <h5>Cut List</h5>
+                                <ul class="cut-list">
+                                    <li>1× ¼&quot; pegboard × 48&quot; × 96&quot; (cut to desired size)</li>
+                                    <li>4× 1×4 × 48&quot; — Framing boards</li>
+                                    <li>2× 1×4 × 24&quot; — Side frame pieces</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5>Materials</h5>
+                                <ul class="cut-list">
+                                    <li>1½&quot; wood screws (20+)</li>
+                                    <li>Pegboard hooks (assorted set)</li>
+                                    <li>Wood glue</li>
+                                    <li>Paint or stain (for the frame)</li>
+                                    <li>Wall anchors or lag bolts (4)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="plan-section">
+                        <h4>Steps</h4>
+                        <ol class="steps-list">
+                            <li>
+                                <strong>Cut pegboard to size.</strong> Measure your wall space. Cut the pegboard panel with
+                                a jigsaw or circular saw. Score and snap for cleaner cuts.
+                            </li>
+                            <li>
+                                <strong>Build the frame.</strong> Assemble a rectangular frame from 1×4s that's slightly larger
+                                than the pegboard (the frame will cover the raw edges). Glue + screw the corners.
+                            </li>
+                            <li>
+                                <strong>Paint or stain the frame.</strong> Do this before attaching the pegboard.
+                                This is where you personalize the look — dark stain for a workshop vibe, white paint for a garage look.
+                            </li>
+                            <li>
+                                <strong>Attach pegboard to frame.</strong> Lay pegboard face-down. Place frame on top.
+                                Screw through the frame into the pegboard from the back. Space screws every 6&quot;.
+                            </li>
+                            <li>
+                                <strong>Mount to wall.</strong> Hold the frame against the wall at a comfortable height.
+                                Find studs. Screw through the back of the frame into the wall studs.
+                            </li>
+                            <li>
+                                <strong>Arrange your tools.</strong> This is the fun part. Hang wrenches, pliers, screwdrivers,
+                                tape measure. Group by function. Everything should be reachable without moving anything else.
+                            </li>
+                        </ol>
+                    </div>
+
                     <div class="tools-needed">
-                        <strong>Tools:</strong> Miter saw or table saw, drill, level, screwdriver
+                        <strong>Tools:</strong> Jigsaw or circular saw, drill, level, speed square
                     </div>
                 </article>
 
-                <!-- Garage 4 -->
-                <article class="project-card">
+                <!-- Garage 4: Corner Storage Cabinet -->
+                <article class="project-card" id="corner-cabinet">
                     <div class="rank">#4</div>
                     <h3>Corner Storage Cabinet</h3>
                     <div class="project-meta">
                         <span class="tag tag-intermediate">Intermediate</span>
                     </div>
+                    <div class="project-image">
+                        <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Background -->
+                            <rect width="400" height="280" fill="#f5f0e8" rx="4"/>
+                            <!-- Wall corner -->
+                            <rect x="0" y="0" width="400" height="280" fill="#e8e0d4" rx="4"/>
+                            <line x1="200" y1="0" x2="200" y2="280" stroke="#ddd5c8" stroke-width="1"/>
+                            <!-- Floor -->
+                            <rect x="0" y="235" width="400" height="45" fill="#7a6345" rx="4"/>
+                            <!-- Corner cabinet body -->
+                            <!-- Back panel -->
+                            <polygon points="200,40 200,235 320,235" fill="#6b4a1e" stroke="#5c3a1a" stroke-width="1.5"/>
+                            <!-- Left face -->
+                            <polygon points="200,40 100,60 100,235 200,235" fill="#7a5e12" stroke="#5c3a1a" stroke-width="1.5"/>
+                            <!-- Right face -->
+                            <polygon points="200,40 320,60 320,235 200,235" fill="#8b6914" stroke="#5c3a1a" stroke-width="1.5"/>
+                            <!-- Door (left side) -->
+                            <polygon points="105,65 195,85 195,200 105,200" fill="#8b6914" stroke="#5c3a1a" stroke-width="1" rx="2"/>
+                            <!-- Door handle -->
+                            <circle cx="190" cy="135" r="3" fill="#666"/>
+                            <!-- Door (right side) -->
+                            <polygon points="205,85 315,65 315,200 205,200" fill="#8b6914" stroke="#5c3a1a" stroke-width="1" rx="2"/>
+                            <!-- Door handle -->
+                            <circle cx="210" cy="135" r="3" fill="#666"/>
+                            <!-- Interior shelf (visible through slight gap) -->
+                            <line x1="130" y1="140" x2="195" y2="155" stroke="#5c3a1a" stroke-width="1"/>
+                            <line x1="205" y1="155" x2="280" y2="140" stroke="#5c3a1a" stroke-width="1"/>
+                        </svg>
+                    </div>
                     <p class="project-desc">
-                        Woodshop Diaries' garage makeover series made these corner cabinets extremely popular. Uses
-                        dead corner space (usually wasted), plywood sheets, and pocket holes to create enclosed storage
+                        Uses dead corner space that's usually wasted. Plywood and pocket holes create enclosed storage
                         for cans, bins, and bulk items. Covers the "clutter that doesn't belong on display" problem.
                     </p>
-                    <ul class="skills-list">
-                        <li>Box construction with doors</li>
-                        <li>Corner fit / angled cuts</li>
-                        <li>Hinge mounting</li>
-                        <li>Interior shelf adjustment</li>
-                    </ul>
+
+                    <div class="plan-section">
+                        <h4>Build Plan</h4>
+                        <div class="plan-grid">
+                            <div>
+                                <h5>Cut List</h5>
+                                <ul class="cut-list">
+                                    <li>2× ¾&quot; plywood × 24&quot; × 36&quot; — Side panels (angled)</li>
+                                    <li>1× ¾&quot; plywood × 24&quot; × 36&quot; — Back panel</li>
+                                    <li>1× ¾&quot; plywood × 24&quot; × 24&quot; — Top panel</li>
+                                    <li>2× ¾&quot; plywood × 24&quot; × 30&quot; — Doors (cut with miter)</li>
+                                    <li>1× ¾&quot; plywood × 24&quot; × 24&quot; — Interior shelf</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5>Materials</h5>
+                                <ul class="cut-list">
+                                    <li>1¼&quot; pocket hole screws (40+)</li>
+                                    <li>Wood glue</li>
+                                    <li>2× cabinet door hinges (pair)</li>
+                                    <li>2× magnetic door catches</li>
+                                    <li>1¾&quot; wood screws (4, for wall)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="plan-section">
+                        <h4>Steps</h4>
+                        <ol class="steps-list">
+                            <li>
+                                <strong>Cut side panels to angle.</strong> Each side panel is a right triangle.
+                                Cut the angled edge at 45° — the two sides meet at 90° in the corner.
+                            </li>
+                            <li>
+                                <strong>Build the box.</strong> Attach the back panel to the sides using pocket holes.
+                                Then attach the top panel. You now have an open box shape with two angled sides and a back.
+                            </li>
+                            <li>
+                                <strong>Add the interior shelf.</strong> Cut shelf to fit inside the box.
+                                Pocket hole screws from the sides into the shelf. Position at desired height (typically waist level).
+                            </li>
+                            <li>
+                                <strong>Build and hang the doors.</strong> Cut doors to cover the front opening.
+                                Attach hinges to the doors, then mount to the cabinet frame. Install magnetic catches to keep doors closed.
+                            </li>
+                            <li>
+                                <strong>Finish.</strong> Sand all surfaces. Apply paint or stain. This is a garage cabinet —
+                                a coat of semi-gloss enamel makes it easy to wipe clean.
+                            </li>
+                            <li>
+                                <strong>Anchor to wall.</strong> Screw through the back panel into wall studs.
+                                Corner cabinets can tip forward if loaded heavily — anchoring is essential.
+                            </li>
+                        </ol>
+                    </div>
+
                     <div class="tools-needed">
-                        <strong>Tools:</strong> Table saw, drill, pocket hole jig, clamps, sander
+                        <strong>Tools:</strong> Table saw, drill, pocket hole jig, clamps, sander, circular saw (for angled cuts)
                     </div>
                 </article>
 
-                <!-- Garage 5 -->
-                <article class="project-card">
+                <!-- Garage 5: Bike & Long-Tool Wall Rack -->
+                <article class="project-card" id="bike-rack">
                     <div class="rank">#5</div>
-                    <h3>Bike & Long-Tool Wall Rack</h3>
+                    <h3>Bike &amp; Long-Tool Wall Rack</h3>
                     <div class="project-meta">
                         <span class="tag tag-beginner">Beginner</span>
                     </div>
+                    <div class="project-image">
+                        <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Background -->
+                            <rect width="400" height="280" fill="#f5f0e8" rx="4"/>
+                            <!-- Wall -->
+                            <rect x="0" y="0" width="400" height="280" fill="#e8e0d4" rx="4"/>
+                            <!-- Floor -->
+                            <rect x="0" y="240" width="400" height="40" fill="#7a6345" rx="4"/>
+                            <!-- Main horizontal rail -->
+                            <rect x="80" y="80" width="240" height="12" fill="#8b6914" stroke="#6b4f10" stroke-width="1" rx="2"/>
+                            <rect x="80" y="80" width="240" height="3" fill="#a07d1e" opacity="0.5"/>
+                            <!-- Wood grain -->
+                            <line x1="100" y1="86" x2="300" y2="86" stroke="#7a5e12" stroke-width="0.5" opacity="0.3"/>
+                            <!-- Mounting brackets -->
+                            <rect x="110" y="76" width="8" height="20" fill="#666" rx="1"/>
+                            <rect x="110" y="76" width="8" height="20" fill="#888" rx="1" opacity="0.5"/>
+                            <rect x="282" y="76" width="8" height="20" fill="#666" rx="1"/>
+                            <rect x="282" y="76" width="8" height="20" fill="#888" rx="1" opacity="0.5"/>
+                            <!-- Bike hooks -->
+                            <rect x="130" y="92" width="4" height="10" fill="#555" rx="1"/>
+                            <!-- Bike frame hanging -->
+                            <path d="M120,82 Q132,60 145,82" fill="none" stroke="#4a6a8a" stroke-width="3" stroke-linecap="round"/>
+                            <circle cx="132" cy="78" r="6" fill="none" stroke="#4a6a8a" stroke-width="2"/>
+                            <line x1="125" y1="82" x2="132" y2="78" stroke="#4a6a8a" stroke-width="2"/>
+                            <line x1="139" y1="82" x2="132" y2="78" stroke="#4a6a8a" stroke-width="2"/>
+                            <!-- Shovel handle slot -->
+                            <rect x="180" y="92" width="6" height="10" fill="#555" rx="1"/>
+                            <!-- Shovel -->
+                            <rect x="179" y="50" width="8" height="45" fill="#8b6914" rx="1"/>
+                            <rect x="174" y="44" width="18" height="12" fill="#888" rx="2"/>
+                            <!-- Rake handle slot -->
+                            <rect x="220" y="92" width="6" height="10" fill="#555" rx="1"/>
+                            <!-- Rake -->
+                            <rect x="219" y="48" width="8" height="47" fill="#8b6914" rx="1"/>
+                            <rect x="214" y="42" width="18" height="10" fill="#888" rx="1"/>
+                            <line x1="217" y1="42" x2="217" y2="36" stroke="#888" stroke-width="2"/>
+                            <line x1="223" y1="42" x2="223" y2="36" stroke="#888" stroke-width="2"/>
+                            <line x1="229" y1="42" x2="229" y2="36" stroke="#888" stroke-width="2"/>
+                            <!-- Hose reel / cord hook -->
+                            <rect x="260" y="92" width="6" height="10" fill="#555" rx="1"/>
+                            <circle cx="263" cy="100" r="10" fill="none" stroke="#5a7a3a" stroke-width="3" stroke-dasharray="4 2"/>
+                            <!-- Labels -->
+                            <rect x="105" y="120" width="50" height="16" rx="3" fill="#e0d8cc" stroke="#c0b8a8" stroke-width="0.5"/>
+                            <text x="130" y="131" text-anchor="middle" font-size="7" fill="#666" font-family="sans-serif">BIKE</text>
+                            <rect x="170" y="120" width="55" height="16" rx="3" fill="#e0d8cc" stroke="#c0b8a8" stroke-width="0.5"/>
+                            <text x="197" y="131" text-anchor="middle" font-size="7" fill="#666" font-family="sans-serif">TOOLS</text>
+                            <rect x="235" y="120" width="55" height="16" rx="3" fill="#e0d8cc" stroke="#c0b8a8" stroke-width="0.5"/>
+                            <text x="262" y="131" text-anchor="middle" font-size="7" fill="#666" font-family="sans-serif">HOSE</text>
+                        </svg>
+                    </div>
                     <p class="project-desc">
-                        Simple but transformative. A wall-mounted rack for bikes, rakes, shovels, and long-handled
-                        tools clears a huge amount of floor space for under $20 in materials. Family Handyman's list
-                        includes multiple versions — from pallet-based to 2x4 slotted designs. One-hour build.
+                        Under $20 in materials. A wall-mounted rack for bikes, rakes, shovels, and hoses clears
+                        a huge amount of floor space. One-hour build. Family Handyman's most-shared garage project.
                     </p>
-                    <ul class="skills-list">
-                        <li>Simple joinery</li>
-                        <li>Angle cutting for bike forks</li>
-                        <li>Wall anchoring</li>
-                        <li>Ergonomic height planning</li>
-                    </ul>
+
+                    <div class="plan-section">
+                        <h4>Build Plan</h4>
+                        <div class="plan-grid">
+                            <div>
+                                <h5>Cut List</h5>
+                                <ul class="cut-list">
+                                    <li>1× 2×4 × 72&quot; — Main horizontal rail (cut to wall length)</li>
+                                    <li>4× 2×4 × 8&quot; — Support blocks (2 per hook position)</li>
+                                    <li>8× 2×4 × 4&quot; — Hook arms (angled cuts)</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5>Materials</h5>
+                                <ul class="cut-list">
+                                    <li>2½&quot; wood screws (20+)</li>
+                                    <li>3&quot; structural screws (4, into studs)</li>
+                                    <li>Wood glue</li>
+                                    <li>4× heavy-duty wall anchors or lag bolts</li>
+                                    <li>Paint or stain (optional)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="plan-section">
+                        <h4>Steps</h4>
+                        <ol class="steps-list">
+                            <li>
+                                <strong>Cut the main rail.</strong> Cut the 2×4 to fit your wall space.
+                                Measure from stud center to stud center. Position hooks every 12-16&quot; apart.
+                            </li>
+                            <li>
+                                <strong>Cut the hook arms.</strong> Cut four 4&quot; pieces at a 45° angle on one end.
+                                These are the V-notches that hold bike tires or tool handles. The angle is critical —
+                                without it, bikes will slide off.
+                            </li>
+                            <li>
+                                <strong>Assemble hooks to rail.</strong> Glue and screw each hook arm to the bottom
+                                of the rail at your marked positions. The angled end faces outward.
+                            </li>
+                            <li>
+                                <strong>Add support blocks.</strong> Cut 2×4 blocks to fit between the rail and wall.
+                                Screw through the rail into the blocks. These prevent the rail from sagging under weight.
+                            </li>
+                            <li>
+                                <strong>Mount to wall.</strong> Position the rail at a comfortable height
+                                (top of bike tire should be below shoulder level). Screw through the rail into wall studs.
+                                Use lag bolts if studs are spaced 24&quot; apart.
+                            </li>
+                            <li>
+                                <strong>Load it up.</strong> Hang bikes first (heaviest items). Then rakes, shovels, hoses.
+                                Leave empty hooks for future tools. This is the last step of any garage project.
+                            </li>
+                        </ol>
+                    </div>
+
                     <div class="tools-needed">
-                        <strong>Tools:</strong> Miter saw, drill, level, screws
+                        <strong>Tools:</strong> Circular saw or miter saw, drill, level, speed square
                     </div>
                 </article>
             </div>
