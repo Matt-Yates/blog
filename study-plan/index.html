@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Study Plan — Hayes Yates</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #242836;
+    --border: #2e3348;
+    --text: #e2e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c8cff;
+    --accent-dim: #4a6aef;
+    --green: #34d399;
+    --orange: #fbbf24;
+    --red: #f87171;
+    --purple: #a78bfa;
+    --teal: #2dd4bf;
+    --radius: 10px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+  .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+
+  /* Header */
+  .header {
+    text-align: center;
+    padding: 40px 0 30px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 30px;
+  }
+  .header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent), var(--purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+  }
+  .header p { color: var(--text-dim); font-size: 1rem; }
+
+  /* Navigation */
+  .nav {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+  }
+  .nav button {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    padding: 10px 20px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .nav button:hover { background: var(--surface2); color: var(--text); }
+  .nav button.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+
+  /* Dashboard */
+  .dashboard { display: none; }
+  .dashboard.active { display: block; }
+
+  /* Stats */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px;
+    margin-bottom: 30px;
+  }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    text-align: center;
+  }
+  .stat-card .number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .stat-card .label { color: var(--text-dim); font-size: 0.85rem; margin-top: 4px; }
+  .stat-card.due-today .number { color: var(--red); }
+  .stat-card.pending .number { color: var(--orange); }
+  .stat-card.done .number { color: var(--green); }
+
+  /* Progress Bar */
+  .progress-section { margin-bottom: 30px; }
+  .progress-header { display: flex; justify-content: space-between; margin-bottom: 8px; }
+  .progress-header span { font-size: 0.9rem; color: var(--text-dim); }
+  .progress-bar {
+    height: 12px;
+    background: var(--surface2);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--green));
+    border-radius: 6px;
+    transition: width 0.5s ease;
+  }
+
+  /* Urgent Items */
+  .urgent-section { margin-bottom: 30px; }
+  .urgent-section h3 {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    color: var(--red);
+  }
+  .urgent-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--red);
+    border-radius: var(--radius);
+    padding: 16px;
+    margin-bottom: 10px;
+  }
+  .urgent-item .course { font-size: 0.8rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; }
+  .urgent-item .title { font-weight: 600; margin: 4px 0; }
+  .urgent-item .meta { font-size: 0.85rem; color: var(--text-dim); }
+
+  /* Day View */
+  .day-view { display: none; }
+  .day-view.active { display: block; }
+
+  .day-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .day-header h2 { font-size: 1.4rem; }
+  .day-nav { display: flex; gap: 8px; }
+  .day-nav button {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 8px 16px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+  .day-nav button:hover { background: var(--surface2); }
+  .day-nav button:disabled { opacity: 0.3; cursor: default; }
+
+  /* Study Blocks */
+  .study-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 16px;
+    overflow: hidden;
+    transition: all 0.2s;
+  }
+  .study-block.completed { opacity: 0.6; }
+  .study-block.completed .block-title { text-decoration: line-through; }
+  .block-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 20px;
+    cursor: pointer;
+  }
+  .block-header:hover { background: var(--surface2); }
+  .check {
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--border);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .check.checked {
+    background: var(--green);
+    border-color: var(--green);
+  }
+  .check.checked::after {
+    content: '✓';
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .block-info { flex: 1; }
+  .block-course {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .block-title { font-weight: 600; font-size: 1.05rem; margin: 4px 0; }
+  .block-time { font-size: 0.85rem; color: var(--text-dim); }
+  .block-desc {
+    padding: 0 20px 20px;
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+    display: none;
+  }
+  .study-block.expanded .block-desc { display: block; }
+
+  /* Course Colors */
+  .course-english { color: var(--teal); }
+  .course-math { color: var(--accent); }
+  .course-pltw { color: var(--purple); }
+  .course-social { color: var(--orange); }
+  .course-earth { color: var(--green); }
+  .course-business { color: var(--red); }
+  .course-orchestra { color: var(--teal); }
+
+  /* Break Block */
+  .break-block {
+    text-align: center;
+    padding: 10px;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    font-style: italic;
+    letter-spacing: 0.1em;
+  }
+
+  /* Total Time */
+  .day-total {
+    text-align: right;
+    padding: 12px 0;
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    border-top: 1px solid var(--border);
+    margin-top: 20px;
+  }
+
+  /* Weekly View */
+  .weekly-view { display: none; }
+  .weekly-view.active { display: block; }
+  .week-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+  .week-table th {
+    text-align: left;
+    padding: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .week-table td {
+    padding: 12px;
+    border: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .week-table tr:not(:last-child) td { border-bottom: 2px solid var(--border); }
+  .week-table .day-name { font-weight: 600; color: var(--text); }
+  .week-table .due-badge {
+    display: inline-block;
+    background: var(--surface2);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    color: var(--orange);
+    margin-left: 8px;
+  }
+
+  /* Reset button */
+  .reset-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    padding: 10px 16px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 0.8rem;
+  }
+  .reset-btn:hover { color: var(--red); border-color: var(--red); }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .header h1 { font-size: 1.5rem; }
+    .container { padding: 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>📚 Study Plan</h1>
+    <p>Week of Sep 25 – Oct 4, 2026 • 3 hours/day</p>
+  </div>
+
+  <div class="nav">
+    <button class="active" onclick="showView('dashboard')">Dashboard</button>
+    <button onclick="showView('day')">Day by Day</button>
+    <button onclick="showView('weekly')">Weekly</button>
+  </div>
+
+  <!-- Dashboard -->
+  <div id="dashboard" class="dashboard active">
+    <div class="stats">
+      <div class="stat-card due-today">
+        <div class="number" id="dueToday">0</div>
+        <div class="label">Due Today</div>
+      </div>
+      <div class="stat-card pending">
+        <div class="number" id="upcomingTotal">0</div>
+        <div class="label">Upcoming</div>
+      </div>
+      <div class="stat-card done">
+        <div class="number" id="completedCount">0</div>
+        <div class="label">Completed</div>
+      </div>
+      <div class="stat-card">
+        <div class="number" id="totalItems">0</div>
+        <div class="label">Total Items</div>
+      </div>
+    </div>
+
+    <div class="progress-section">
+      <div class="progress-header">
+        <span>Overall Progress</span>
+        <span id="progressPercent">0%</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+      </div>
+    </div>
+
+    <div class="urgent-section" id="urgentSection" style="display:none">
+      <h3>🔴 Due This Week</h3>
+      <div id="urgentList"></div>
+    </div>
+  </div>
+
+  <!-- Day View -->
+  <div id="dayView" class="day-view">
+    <div class="day-header">
+      <h2 id="dayTitle"></h2>
+      <div class="day-nav">
+        <button id="prevDay" onclick="prevDay()">← Prev</button>
+        <button id="nextDay" onclick="nextDay()">Next →</button>
+      </div>
+    </div>
+    <div id="dayBlocks"></div>
+    <div class="day-total" id="dayTotal"></div>
+  </div>
+
+  <!-- Weekly View -->
+  <div id="weeklyView" class="weekly-view">
+    <h2 style="margin-bottom: 20px;">Week Overview: Sep 25 – Oct 4</h2>
+    <div id="weeklyTable"></div>
+  </div>
+</div>
+
+<button class="reset-btn" onclick="resetProgress()">Reset All Progress</button>
+
+<script>
+// Study plan data
+const plan = {
+  "2026-09-25": {
+    date: "2026-09-25",
+    display: "Thursday, Sep 25 — Today",
+    blocks: [
+      {
+        course: "English 1",
+        courseClass: "course-english",
+        title: "IXL: Use in-text citations (ZP8)",
+        time: "4:30–5:10 PM",
+        duration: 40,
+        description: "Complete the IXL skill on using in-text citations. This is DUE TODAY.",
+        due: "2026-09-25",
+        urgent: true
+      }
+    ]
+  },
+  "2026-09-26": {
+    date: "2026-09-26",
+    display: "Friday, Sep 26",
+    blocks: [
+      {
+        course: "PLTW",
+        courseClass: "course-pltw",
+        title: "Build A Band (Easy + Moderate)",
+        time: "4:30–5:20 PM",
+        duration: 50,
+        description: "Work on the Build A Band project. Start with the Easy and Moderate difficulty levels.",
+        due: "2026-09-27",
+        urgent: true
+      },
+      {
+        course: "PLTW",
+        courseClass: "course-pltw",
+        title: "Build A Band (Hard)",
+        time: "5:30–6:10 PM",
+        duration: 40,
+        description: "Complete the Hard difficulty level of Build A Band.",
+        due: "2026-09-27",
+        urgent: true
+      },
+      {
+        course: "PLTW",
+        courseClass: "course-pltw",
+        title: "Build A Band – Choice / Submit",
+        time: "6:20–6:50 PM",
+        duration: 30,
+        description: "Complete the Choice level and submit all Unit 2 Build A Band work.",
+        due: "2026-09-27",
+        urgent: true
+      }
+    ]
+  },
+  "2026-09-27": {
+    date: "2026-09-27",
+    display: "Saturday, Sep 27 — Due Day",
+    blocks: [
+      {
+        course: "PLTW",
+        courseClass: "course-pltw",
+        title: "Finalize Unit 2 – turn in here",
+        time: "9:00–10:00 AM",
+        duration: 60,
+        description: "Double-check all Unit 2 work is submitted. Submit any missing items.",
+        due: "2026-09-27",
+        urgent: true
+      },
+      {
+        course: "Social Studies",
+        courseClass: "course-social",
+        title: "Q1 W7 AOW (Answer on Your Own)",
+        time: "10:10–11:00 AM",
+        duration: 50,
+        description: "Complete the weekly Q1 W7 AOW assignment. Due TODAY at 8:30 AM — late submission likely needed.",
+        due: "2026-09-27",
+        urgent: true
+      }
+    ]
+  },
+  "2026-09-28": {
+    date: "2026-09-28",
+    display: "Sunday, Sep 28",
+    blocks: [
+      {
+        course: "PLTW",
+        courseClass: "course-pltw",
+        title: "Unit 3 – Pick a Game Direction",
+        time: "4:30–5:20 PM",
+        duration: 50,
+        description: "Choose which game to build for Unit 3: Pong, Scratch Maze, or Scrolling Game. Review the project requirements.",
+        due: "2026-10-02",
+        urgent: true
+      },
+      {
+        course: "PLTW",
+        courseClass: "course-pltw",
+        title: "Pong Game Project",
+        time: "5:30–6:20 PM",
+        duration: 50,
+        description: "Build the Pong game in Scratch for Unit 3.",
+        due: "2026-10-02",
+        urgent: true
+      },
+      {
+        course: "PLTW",
+        courseClass: "course-pltw",
+        title: "Scratch Maze Game Project",
+        time: "6:30–7:00 PM",
+        duration: 30,
+        description: "Start the Scratch Maze Game project for Unit 3.",
+        due: "2026-10-02",
+        urgent: true
+      }
+    ]
+  },
+  "2026-09-29": {
+    date: "2026-09-29",
+    display: "Monday, Sep 29",
+    blocks: [
+      {
+        course: "PLTW",
+        courseClass: "course-pltw",
+        title: "Scrolling Game Project",
+        time: "4:30–5:20 PM",
+        duration: 50,
+        description: "Build the Scrolling Game project for Unit 3.",
+        due: "2026-10-02",
+        urgent: true
+      },
+      {
+        course: "PLTW",
+        courseClass: "course-pltw",
+        title: "Group Capstone Project",
+        time: "5:30–6:20 PM",
+        duration: 50,
+        description: "Work on the Group Capstone Project for Unit 3.",
+        due: "2026-10-02",
+        urgent: true
+      },
+      {
+        course: "PLTW",
+        courseClass: "course-pltw",
+        title: "Group Discussion + Submit Unit 3",
+        time: "6:30–7:00 PM",
+        duration: 30,
+        description: "Complete the Group Discussion and submit all Unit 3 work.",
+        due: "2026-10-02",
+        urgent: true
+      }
+    ]
+  },
+  "2026-09-30": {
+    date: "2026-09-30",
+    display: "Tuesday, Sep 30 — Catch-up",
+    blocks: [
+      {
+        course: "Math 2",
+        courseClass: "course-math",
+        title: "Review: Quadratic Functions",
+        time: "4:30–5:15 PM",
+        duration: 45,
+        description: "Review Quadratic Word Problems and key concepts. Go over any missed quizzes from 9-3 and 9-5.",
+        due: "2026-09-23",
+        urgent: false
+      },
+      {
+        course: "English 1",
+        courseClass: "course-english",
+        title: "The Giver: Reading Check",
+        time: "5:25–6:10 PM",
+        duration: 45,
+        description: "Check reading progress on The Giver. Complete any missed chapter readings (Ch 18-23).",
+        due: "2026-09-15",
+        urgent: false
+      },
+      {
+        course: "Flex",
+        courseClass: "",
+        title: "Buffer / Catch-up",
+        time: "6:20–7:00 PM",
+        duration: 40,
+        description: "Use this time to catch up on anything that didn't get done during the week.",
+        due: null,
+        urgent: false
+      }
+    ]
+  },
+  "2026-10-01": {
+    date: "2026-10-01",
+    display: "Wednesday, Oct 1 — Maintenance",
+    blocks: [
+      {
+        course: "PLTW",
+        courseClass: "course-pltw",
+        title: "Review & Polish Unit 3 Work",
+        time: "4:30–5:20 PM",
+        duration: 50,
+        description: "Review all Unit 3 projects. Polish and test games before final submission.",
+        due: "2026-10-02",
+        urgent: true
+      },
+      {
+        course: "Social Studies",
+        courseClass: "course-social",
+        title: "Review Q1 Material",
+        time: "5:30–6:10 PM",
+        duration: 40,
+        description: "Review Q1 Social Studies material for upcoming weeks.",
+        due: null,
+        urgent: false
+      },
+      {
+        course: "Math 2",
+        courseClass: "course-math",
+        title: "Quick Math Practice",
+        time: "6:20–7:00 PM",
+        duration: 40,
+        description: "Do 5-10 minutes of warm-up problems. Focus on quadratic functions and triangle theorems.",
+        due: null,
+        urgent: false
+      }
+    ]
+  },
+  "2026-10-02": {
+    date: "2026-10-02",
+    display: "Thursday, Oct 2 — Due Day",
+    blocks: [
+      {
+        course: "PLTW",
+        courseClass: "course-pltw",
+        title: "Unit 3 – turn in here (Final Check)",
+        time: "9:00–10:00 AM",
+        duration: 60,
+        description: "FINAL SUBMISSION for Unit 3. Double-check all projects are uploaded.",
+        due: "2026-10-02",
+        urgent: true
+      }
+    ]
+  },
+  "2026-10-03": {
+    date: "2026-10-03",
+    display: "Friday, Oct 3 — Catch-up",
+    blocks: [
+      {
+        course: "Earth Science",
+        courseClass: "course-earth",
+        title: "Law of Conservation of Mass Practice",
+        time: "4:30–5:15 PM",
+        duration: 45,
+        description: "Complete the Law of Conservation of Mass Practice. Due Oct 2 — may need late submission.",
+        due: "2026-10-02",
+        urgent: true
+      },
+      {
+        course: "Math 2",
+        courseClass: "course-math",
+        title: "Prep: Quarter 1 Warm-Ups",
+        time: "5:25–6:10 PM",
+        duration: 45,
+        description: "Start working on Quarter 1 Warm-Ups (due Oct 7). Focus on key concepts.",
+        due: "2026-10-07",
+        urgent: false
+      },
+      {
+        course: "English 1",
+        courseClass: "course-english",
+        title: "Overdue: The Giver Assignments",
+        time: "6:20–7:00 PM",
+        duration: 40,
+        description: "Catch up on any remaining overdue The Giver assignments (essay, quotation analysis).",
+        due: "2026-09-16",
+        urgent: false
+      }
+    ]
+  },
+  "2026-10-04": {
+    date: "2026-10-04",
+    display: "Saturday, Oct 4",
+    blocks: [
+      {
+        course: "Math 2",
+        courseClass: "course-math",
+        title: "Quarter 1 Warm-Ups (continue)",
+        time: "4:30–5:30 PM",
+        duration: 60,
+        description: "Continue and complete Quarter 1 Warm-Ups.",
+        due: "2026-10-07",
+        urgent: false
+      },
+      {
+        course: "Earth Science",
+        courseClass: "course-earth",
+        title: "Law of Conservation of Mass (continue)",
+        time: "5:40–6:20 PM",
+        duration: 40,
+        description: "Finish the Law of Conservation of Mass Practice if not done.",
+        due: "2026-10-02",
+        urgent: true
+      },
+      {
+        course: "Flex",
+        courseClass: "",
+        title: "Free Study / Catch-up",
+        time: "6:30–7:00 PM",
+        duration: 30,
+        description: "Use remaining time for any catch-up work.",
+        due: null,
+        urgent: false
+      }
+    ]
+  }
+};
+
+const days = Object.keys(plan);
+let currentDayIndex = 0;
+let completedTasks = {};
+try { completedTasks = JSON.parse(localStorage.getItem('studyPlanCompleted') || '{}'); } catch(e) { localStorage.removeItem('studyPlanCompleted'); }
+
+function showView(view) {
+  document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById('dashboard').classList.remove('active');
+  document.getElementById('dayView').classList.remove('active');
+  document.getElementById('weeklyView').classList.remove('active');
+
+  if (view === 'dashboard') {
+    document.querySelectorAll('.nav button')[0].classList.add('active');
+    document.getElementById('dashboard').classList.add('active');
+    updateDashboard();
+  } else if (view === 'day') {
+    document.querySelectorAll('.nav button')[1].classList.add('active');
+    document.getElementById('dayView').classList.add('active');
+    renderDay(currentDayIndex);
+  } else if (view === 'weekly') {
+    document.querySelectorAll('.nav button')[2].classList.add('active');
+    document.getElementById('weeklyView').classList.add('active');
+    renderWeekly();
+  }
+}
+
+function updateDashboard() {
+  let total = 0, done = 0, dueToday = 0, upcoming = 0;
+  let urgentItems = [];
+
+  days.forEach(dayKey => {
+    const day = plan[dayKey];
+    day.blocks.forEach(block => {
+      total++;
+      const key = dayKey + '-' + block.title;
+      if (completedTasks[key]) done++;
+      if (block.urgent && block.due) {
+        const dueDate = new Date(block.due);
+        const today = new Date();
+        today.setHours(0,0,0,0);
+        if (dueDate <= today) dueToday++;
+        else upcoming++;
+        urgentItems.push({ ...block, day: dayKey });
+      }
+    });
+  });
+
+  urgentItems.sort((a, b) => new Date(a.due) - new Date(b.due));
+
+  document.getElementById('dueToday').textContent = dueToday;
+  document.getElementById('upcomingTotal').textContent = upcoming;
+  document.getElementById('completedCount').textContent = done;
+  document.getElementById('totalItems').textContent = total;
+  document.getElementById('progressPercent').textContent = total > 0 ? Math.round(done / total * 100) + '%' : '0%';
+  document.getElementById('progressFill').style.width = total > 0 ? (done / total * 100) + '%' : '0%';
+
+  const urgentSection = document.getElementById('urgentSection');
+  if (urgentItems.length > 0) {
+    urgentSection.style.display = 'block';
+    const list = document.getElementById('urgentList');
+    list.innerHTML = '';
+    urgentItems.slice(0, 10).forEach(item => {
+      const div = document.createElement('div');
+      div.className = 'urgent-item';
+      const courseDiv = document.createElement('div');
+      courseDiv.className = 'course ' + (item.courseClass || '');
+      courseDiv.textContent = item.course;
+      const titleDiv = document.createElement('div');
+      titleDiv.className = 'title';
+      titleDiv.textContent = item.title;
+      const metaDiv = document.createElement('div');
+      metaDiv.className = 'meta';
+      metaDiv.textContent = 'Due: ' + item.due + ' • Study day: ' + item.day;
+      div.appendChild(courseDiv);
+      div.appendChild(titleDiv);
+      div.appendChild(metaDiv);
+      list.appendChild(div);
+    });
+  } else {
+    urgentSection.style.display = 'none';
+  }
+}
+
+function renderDay(index) {
+  if (index < 0 || index >= days.length) return;
+  currentDayIndex = index;
+  const dayKey = days[index];
+  const day = plan[dayKey];
+
+  document.getElementById('dayTitle').textContent = day.display;
+  document.getElementById('prevDay').disabled = index === 0;
+  document.getElementById('nextDay').disabled = index === days.length - 1;
+
+  const blocksContainer = document.getElementById('dayBlocks');
+  blocksContainer.innerHTML = '';
+  day.blocks.forEach(block => {
+    const key = dayKey + '-' + block.title;
+    const done = completedTasks[key];
+    const blockEl = document.createElement('div');
+    blockEl.className = 'study-block' + (done ? ' completed' : '');
+    blockEl.onclick = function() { toggleExpand(this); };
+
+    const header = document.createElement('div');
+    header.className = 'block-header';
+
+    const check = document.createElement('div');
+    check.className = 'check' + (done ? ' checked' : '');
+    check.onclick = function(e) { e.stopPropagation(); toggleComplete(key, check); };
+
+    const info = document.createElement('div');
+    info.className = 'block-info';
+    const courseEl = document.createElement('div');
+    courseEl.className = 'block-course ' + (block.courseClass || '');
+    courseEl.textContent = block.course;
+    const titleEl = document.createElement('div');
+    titleEl.className = 'block-title';
+    titleEl.textContent = block.title;
+    const timeEl = document.createElement('div');
+    timeEl.className = 'block-time';
+    timeEl.textContent = block.time + ' • ' + block.duration + ' min';
+    info.appendChild(courseEl);
+    info.appendChild(titleEl);
+    info.appendChild(timeEl);
+    header.appendChild(check);
+    header.appendChild(info);
+    blockEl.appendChild(header);
+
+    const descEl = document.createElement('div');
+    descEl.className = 'block-desc';
+    descEl.textContent = block.description;
+    blockEl.appendChild(descEl);
+
+    blocksContainer.appendChild(blockEl);
+  });
+
+  const totalMin = day.blocks.reduce((sum, b) => sum + b.duration, 0);
+  const hours = Math.floor(totalMin / 60);
+  const mins = totalMin % 60;
+  const timeStr = hours > 0 ? hours + 'h ' + mins + 'm' : mins + 'm';
+  document.getElementById('dayTotal').textContent = 'Total: ' + timeStr;
+}
+
+function toggleExpand(el) {
+  el.classList.toggle('expanded');
+}
+
+function toggleComplete(key, el) {
+  if (completedTasks[key]) {
+    delete completedTasks[key];
+    el.classList.remove('checked');
+    el.closest('.study-block').classList.remove('completed');
+  } else {
+    completedTasks[key] = true;
+    el.classList.add('checked');
+    el.closest('.study-block').classList.add('completed');
+  }
+  localStorage.setItem('studyPlanCompleted', JSON.stringify(completedTasks));
+  updateDashboard();
+}
+
+function prevDay() { if (currentDayIndex > 0) renderDay(currentDayIndex - 1); }
+function nextDay() { if (currentDayIndex < days.length - 1) renderDay(currentDayIndex + 1); }
+
+function renderWeekly() {
+  const daysOfWeek = [
+    { key: '2026-09-25', name: 'Thu Sep 25' },
+    { key: '2026-09-26', name: 'Fri Sep 26' },
+    { key: '2026-09-27', name: 'Sat Sep 27' },
+    { key: '2026-09-28', name: 'Sun Sep 28' },
+    { key: '2026-09-29', name: 'Mon Sep 29' },
+    { key: '2026-09-30', name: 'Tue Sep 30' },
+    { key: '2026-10-01', name: 'Wed Oct 1' },
+    { key: '2026-10-02', name: 'Thu Oct 2' },
+    { key: '2026-10-03', name: 'Fri Oct 3' },
+    { key: '2026-10-04', name: 'Sat Oct 4' }
+  ];
+
+  const tableContainer = document.getElementById('weeklyTable');
+  tableContainer.innerHTML = '';
+  const table = document.createElement('table');
+  table.className = 'week-table';
+
+  const thead = document.createElement('thead');
+  const headerRow = document.createElement('tr');
+  ['Day', 'Study Blocks', 'Total'].forEach(h => {
+    const th = document.createElement('th');
+    th.textContent = h;
+    headerRow.appendChild(th);
+  });
+  thead.appendChild(headerRow);
+  table.appendChild(thead);
+
+  const tbody = document.createElement('tbody');
+  daysOfWeek.forEach(dayInfo => {
+    const day = plan[dayInfo.key];
+    const tr = document.createElement('tr');
+
+    const tdDay = document.createElement('td');
+    tdDay.className = 'day-name';
+    tdDay.textContent = dayInfo.name;
+
+    if (day) {
+      const tdBlocks = document.createElement('td');
+      const blockEls = day.blocks.map((b, i) => {
+        const key = dayInfo.key + '-' + b.title;
+        const done = completedTasks[key];
+        const check = done ? '\u2705' : '\u2b1c';
+        const span = document.createElement('span');
+        span.textContent = check + ' ' + b.title;
+        return span;
+      });
+      blockEls.forEach((el, i) => {
+        tdBlocks.appendChild(el);
+        if (i < blockEls.length - 1) tdBlocks.appendChild(document.createElement('br'));
+      });
+
+      const totalMin = day.blocks.reduce((sum, b) => sum + b.duration, 0);
+      const hours = Math.floor(totalMin / 60);
+      const mins = totalMin % 60;
+      const tdTotal = document.createElement('td');
+      tdTotal.textContent = (hours > 0 ? hours + 'h ' : '') + mins + 'm';
+
+      const hasDue = day.blocks.some(b => b.urgent);
+      if (hasDue) {
+        const badge = document.createElement('span');
+        badge.className = 'due-badge';
+        badge.textContent = 'DUE THIS WEEK';
+        tdDay.appendChild(badge);
+      }
+
+      tr.appendChild(tdDay);
+      tr.appendChild(tdBlocks);
+      tr.appendChild(tdTotal);
+    } else {
+      const tdEmpty = document.createElement('td');
+      tdEmpty.setAttribute('colspan', '2');
+      tdEmpty.style.color = 'var(--text-dim)';
+      tdEmpty.textContent = 'No plan';
+      tr.appendChild(tdDay);
+      tr.appendChild(tdEmpty);
+    }
+
+    tbody.appendChild(tr);
+  });
+  table.appendChild(tbody);
+  tableContainer.appendChild(table);
+}
+
+function resetProgress() {
+  if (confirm('Reset all progress? This cannot be undone.')) {
+    completedTasks = {};
+    localStorage.removeItem('studyPlanCompleted');
+    updateDashboard();
+    renderDay(currentDayIndex);
+  }
+}
+
+// Initialize
+updateDashboard();
+renderDay(currentDayIndex);
+</script>
+</body>
+</html>
