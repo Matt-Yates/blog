@@ -386,6 +386,48 @@ body {
     padding-top: 0.75rem;
 }
 
+/* ===== Inspiration Section ===== */
+.inspiration-section {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+}
+
+.inspiration-section h4 {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+}
+
+.inspiration-links {
+    list-style: none;
+    font-size: 0.8125rem;
+}
+
+.inspiration-links li {
+    padding: 0.3rem 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.inspiration-links li:last-child {
+    border-bottom: none;
+}
+
+.inspiration-links a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.15s;
+}
+
+.inspiration-links a:hover {
+    opacity: 0.7;
+    text-decoration: underline;
+}
+
 /* ===== Footer ===== */
 .footer {
     max-width: var(--max-width);
