@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Log</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="logo">Project Log</a>
+            <div class="nav-links">
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#planned" class="nav-link">Woodworking</a>
+                <a href="#garage" class="nav-link">Garage</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="hero">
+            <h1>What I Build</h1>
+            <p>A record of projects in progress and planned. Starting with woodworking — the craft that turns raw material into things you can hold.</p>
+        </section>
+
+        <!-- COMPLETED / IN PROGRESS PROJECTS -->
+        <section id="projects" class="section">
+            <div class="section-header">
+                <h2>Projects</h2>
+                <p class="section-subtitle">Work in progress and completed builds</p>
+            </div>
+            <div class="placeholder">
+                <p>No projects yet. Your first build goes here.</p>
+            </div>
+        </section>
+
+        <!-- PLANNED WOODWORKING PROJECTS -->
+        <section id="planned" class="section">
+            <div class="section-header">
+                <h2>Planned Projects</h2>
+                <p class="section-subtitle">Top 5 beginner-to-intermediate woodworking projects, ranked by community recommendation across Reddit, YouTube, instructional sites, and woodworking books</p>
+            </div>
+
+            <div class="woodworking-research">
+                <p class="research-note">
+                    <strong>Methodology:</strong> Evaluated across 15+ Reddit threads (r/woodworking, r/beginnerwoodworking),
+                    major YouTube woodworking channels, Ana White's plans, Family Handyman, and
+                    books including <em>Complete Guide to Woodworking</em> (Chris Tribe),
+                    <em>The Practical Woodworker</em> (Stephen Corbett), and <em>The Handbuilt Home</em> (Ana White).
+                    Ranked by frequency of recommendation, skill value, practical utility, and beginner accessibility.
+                </p>
+            </div>
+
+            <div class="project-grid">
+                <!-- Project 1 -->
+                <article class="project-card">
+                    <div class="rank">#1</div>
+                    <h3>Cutting Board</h3>
+                    <div class="project-meta">
+                        <span class="tag tag-beginner">Beginner</span>
+                    </div>
+                    <p class="project-desc">
+                        The most consistently recommended first project across every source. Teaches measuring, cross-cutting,
+                        edge-gluing, squaring, and food-safe finishing — the foundational skills everything else builds on.
+                    </p>
+                    <ul class="skills-list">
+                        <li>Cross-cutting & rip cuts</li>
+                        <li>Edge-gluing panels</li>
+                        <li>Squaring a panel</li>
+                        <li>Food-safe finishing</li>
+                    </ul>
+                    <div class="tools-needed">
+                        <strong>Tools:</strong> Table saw (or miter saw), clamps, sandpaper
+                    </div>
+                </article>
+
+                <!-- Project 2 -->
+                <article class="project-card">
+                    <div class="rank">#2</div>
+                    <h3>Floating Shelves</h3>
+                    <div class="project-meta">
+                        <span class="tag tag-beginner">Beginner</span>
+                    </div>
+                    <p class="project-desc">
+                        Ana White's most popular plans. Minimal materials, high visual impact, and teaches precision
+                        cutting, sanding, and wall-mount hardware. Multiple sizes = multiple builds with different challenges.
+                    </p>
+                    <ul class="skills-list">
+                        <li>Precision cutting</li>
+                        <li>Hidden hardware mounting</li>
+                        <li>Edge finishing</li>
+                        <li>Level installation</li>
+                    </ul>
+                    <div class="tools-needed">
+                        <strong>Tools:</strong> Miter saw or table saw, drill, level, clamps
+                    </div>
+                </article>
+
+                <!-- Project 3 -->
+                <article class="project-card">
+                    <div class="rank">#3</div>
+                    <h3>Planters / Plant Boxes</h3>
+                    <div class="project-meta">
+                        <span class="tag tag-beginner">Beginner</span>
+                    </div>
+                    <p class="project-desc">
+                        Top 3 most recommended project across Reddit and instructional sites. Teaches basic box construction,
+                        assembly at angles, and outdoor material selection. Low stakes — mistakes are forgiving.
+                    </p>
+                    <ul class="skills-list">
+                        <li>Box construction</li>
+                        <li>45° or butt joints</li>
+                        <li>Outdoor material selection</li>
+                        <li>Drainage planning</li>
+                    </ul>
+                    <div class="tools-needed">
+                        <strong>Tools:</strong> Miter saw or table saw, drill, screws, sandpaper
+                    </div>
+                </article>
+
+                <!-- Project 4 -->
+                <article class="project-card">
+                    <div class="rank">#4</div>
+                    <h3>Side Table</h3>
+                    <div class="project-meta">
+                        <span class="tag tag-intermediate">Intermediate</span>
+                    </div>
+                    <p class="project-desc">
+                        The classic first furniture piece. Bridges the gap between small crafts and real furniture.
+                        Teaches joinery, leg attachment, and structural integrity — the skills that unlock cabinets and tables.
+                    </p>
+                    <ul class="skills-list">
+                        <li>Table leg joinery (pocket holes or mortise & tenon)</li>
+                        <li>Appliance top attachment</li>
+                        <li>Level & square assembly</li>
+                        <li>Finish staining / oiling</li>
+                    </ul>
+                    <div class="tools-needed">
+                        <strong>Tools:</strong> Table saw, drill, pocket hole jig (optional), clamps, sander
+                    </div>
+                </article>
+
+                <!-- Project 5 -->
+                <article class="project-card">
+                    <div class="rank">#5</div>
+                    <h3>Workbench / Sawhorses</h3>
+                    <p>
+                        The meta-project: build the thing that helps you build everything else. Heavily recommended on Reddit
+                        as a true first project that immediately improves every subsequent build. Simple construction,
+                        massive practical value.
+                    </p>
+                    <ul class="skills-list">
+                        <li>Long cross-cutting</li>
+                        <li>Structural assembly</li>
+                        <li>Weight & stability design</li>
+                        <li>Practical ergonomics</li>
+                    </ul>
+                    <div class="tools-needed">
+                        <strong>Tools:</strong> Table saw or circular saw, drill, 4ft+ clamps, level
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- GARAGE ORGANIZATION PROJECTS -->
+        <section id="garage" class="section">
+            <div class="section-header">
+                <h2>Garage Organization</h2>
+                <p class="section-subtitle">Top 5 woodworking projects for garage storage and organization, ranked by community recommendation across Reddit, Ana White, Kreg, Family Handyman, and YouTube</p>
+            </div>
+
+            <div class="woodworking-research">
+                <p class="research-note">
+                    <strong>Methodology:</strong> Evaluated across r/woodworking_DIY, r/BeginnerWoodWorking,
+                    Ana White's plans, Kreg Tool plans, Family Handyman, and major woodworking YouTube channels.
+                    Ranked by practical impact on garage organization, beginner accessibility, material cost efficiency,
+                    and community enthusiasm (Reddit upvotes, YouTube comments).
+                </p>
+            </div>
+
+            <div class="project-grid">
+                <!-- Garage 1 -->
+                <article class="project-card">
+                    <div class="rank">#1</div>
+                    <h3>Floor-to-Ceiling Shelving Unit</h3>
+                    <div class="project-meta">
+                        <span class="tag tag-intermediate">Intermediate</span>
+                    </div>
+                    <p class="project-desc">
+                        The highest-impact single project for a garage. Ana White's "Ultimate Garage Shelving" and Kreg's
+                        "Garage Storage and Work Center" are the two most popular plans — both use simple plywood and
+                        2x4s, cost under $150, and deliver 30-40 feet of storage in a 6-8 foot footprint. Wall-mounted
+                        or floor-standing, it clears the floor for a car and everything else goes up.
+                    </p>
+                    <ul class="skills-list">
+                        <li>Long rip cuts (plywood)</li>
+                        <li>Pocket-hole joinery</li>
+                        <li>Wall stud finding & mounting</li>
+                        <li>Load distribution design</li>
+                    </ul>
+                    <div class="tools-needed">
+                        <strong>Tools:</strong> Table saw or circular saw, drill, pocket hole jig, level, 4ft+ clamps
+                    </div>
+                </article>
+
+                <!-- Garage 2 -->
+                <article class="project-card">
+                    <div class="rank">#2</div>
+                    <h3>Fold-Down Workbench / Wall Bench</h3>
+                    <div class="project-meta">
+                        <span class="tag tag-beginner">Beginner</span>
+                    </div>
+                    <p class="project-desc">
+                        The #1 viral garage project on Reddit — multiple threads with dozens of builds and enthusiastic
+                        comments. A shelf that folds down into a workbench when you need it, folds flat when you don't.
+                        One user built theirs in a weekend and said it "saved my garage and my sanity." Uses simple
+                        hinges and 2x4s — no fancy hardware needed.
+                    </p>
+                    <ul class="skills-list">
+                        <li>Hinge mounting & alignment</li>
+                        <li>Support brace design</li>
+                        <li>Surface finishing</li>
+                        <li>Space-saving design thinking</li>
+                    </ul>
+                    <div class="tools-needed">
+                        <strong>Tools:</strong> Miter saw or table saw, drill, level, clamps
+                    </div>
+                </article>
+
+                <!-- Garage 3 -->
+                <article class="project-card">
+                    <div class="rank">#3</div>
+                    <h3>Pegboard Tool Wall</h3>
+                    <div class="project-meta">
+                        <span class="tag tag-beginner">Beginner</span>
+                    </div>
+                    <p class="project-desc">
+                        Recommended by virtually every garage makeover video and post. A wooden-framed pegboard panel
+                        transforms a blank wall into an organized tool display. Jen Woodhouse, Jonny Builds, and others
+                        make this one of the easiest weekend projects with outsized impact on daily usability.
+                    </p>
+                    <ul class="skills-list">
+                        <li>Frame construction</li>
+                        <li>Pegboard mounting</li>
+                        <li>Layout & spacing</li>
+                        <li>Paint / stain finish</li>
+                    </ul>
+                    <div class="tools-needed">
+                        <strong>Tools:</strong> Miter saw or table saw, drill, level, screwdriver
+                    </div>
+                </article>
+
+                <!-- Garage 4 -->
+                <article class="project-card">
+                    <div class="rank">#4</div>
+                    <h3>Corner Storage Cabinet</h3>
+                    <div class="project-meta">
+                        <span class="tag tag-intermediate">Intermediate</span>
+                    </div>
+                    <p class="project-desc">
+                        Woodshop Diaries' garage makeover series made these corner cabinets extremely popular. Uses
+                        dead corner space (usually wasted), plywood sheets, and pocket holes to create enclosed storage
+                        for cans, bins, and bulk items. Covers the "clutter that doesn't belong on display" problem.
+                    </p>
+                    <ul class="skills-list">
+                        <li>Box construction with doors</li>
+                        <li>Corner fit / angled cuts</li>
+                        <li>Hinge mounting</li>
+                        <li>Interior shelf adjustment</li>
+                    </ul>
+                    <div class="tools-needed">
+                        <strong>Tools:</strong> Table saw, drill, pocket hole jig, clamps, sander
+                    </div>
+                </article>
+
+                <!-- Garage 5 -->
+                <article class="project-card">
+                    <div class="rank">#5</div>
+                    <h3>Bike & Long-Tool Wall Rack</h3>
+                    <div class="project-meta">
+                        <span class="tag tag-beginner">Beginner</span>
+                    </div>
+                    <p class="project-desc">
+                        Simple but transformative. A wall-mounted rack for bikes, rakes, shovels, and long-handled
+                        tools clears a huge amount of floor space for under $20 in materials. Family Handyman's list
+                        includes multiple versions — from pallet-based to 2x4 slotted designs. One-hour build.
+                    </p>
+                    <ul class="skills-list">
+                        <li>Simple joinery</li>
+                        <li>Angle cutting for bike forks</li>
+                        <li>Wall anchoring</li>
+                        <li>Ergonomic height planning</li>
+                    </ul>
+                    <div class="tools-needed">
+                        <strong>Tools:</strong> Miter saw, drill, level, screws
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>Project Log &mdash; built as a project, for projects.</p>
+    </footer>
+</body>
+</html>
